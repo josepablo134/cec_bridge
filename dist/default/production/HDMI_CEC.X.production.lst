@@ -1,0 +1,3150 @@
+
+
+Microchip Technology PIC LITE Macro Assembler V1.41 build -162212810 
+                                                                                               Sat Jul  8 10:34:10 2017
+
+Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250102
+     1                           	processor	16F628A
+     2                           	opt	pw 120
+     3                           	opt	lm
+     4                           	psect	idataBANK1,global,class=CODE,delta=2
+     5                           	psect	nvBANK1,global,class=BANK1,space=1,delta=1
+     6                           	psect	strings,global,class=STRING,delta=2
+     7                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     8                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     9                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+    10                           	psect	bssBANK1,global,class=BANK1,space=1,delta=1
+    11                           	psect	dataBANK1,global,class=BANK1,space=1,delta=1
+    12                           	psect	bssBANK2,global,class=BANK2,space=1,delta=1
+    13                           	psect	clrtext,global,class=CODE,delta=2
+    14                           	psect	cstackBANK1,global,class=BANK1,space=1,delta=1
+    15                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    16                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    17                           	psect	maintext,global,class=CODE,split=1,delta=2
+    18                           	psect	text1,local,class=CODE,merge=1,delta=2
+    19                           	psect	text2,local,class=CODE,merge=1,delta=2
+    20                           	psect	text3,local,class=CODE,merge=1,delta=2
+    21                           	psect	intentry,global,class=CODE,delta=2
+    22                           	psect	text4,local,class=CODE,merge=1,delta=2
+    23                           	psect	text5,local,class=CODE,merge=1,delta=2
+    24                           	psect	text6,local,class=CODE,merge=1,delta=2
+    25                           	psect	text7,local,class=CODE,merge=1,delta=2
+    26                           	psect	text8,local,class=CODE,merge=1,delta=2
+    27                           	psect	text9,local,class=CODE,merge=1,delta=2
+    28                           	psect	text10,local,class=CODE,merge=1,delta=2
+    29                           	psect	text11,local,class=CODE,merge=1,delta=2
+    30                           	dabs	1,0x7E,2
+    31  0000                     
+    32                           ; Version 1.41
+    33                           ; Generated 25/01/2017 GMT
+    34                           ; 
+    35                           ; Copyright © 2017, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    36                           ; All rights reserved.
+    37                           ; 
+    38                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    39                           ; 
+    40                           ; Redistribution and use in source and binary forms, with or without modification, are
+    41                           ; permitted provided that the following conditions are met:
+    42                           ; 
+    43                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    44                           ;        conditions and the following disclaimer.
+    45                           ; 
+    46                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    47                           ;        of conditions and the following disclaimer in the documentation and/or other
+    48                           ;        materials provided with the distribution.
+    49                           ; 
+    50                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    51                           ;        software without specific prior written permission.
+    52                           ; 
+    53                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    54                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    55                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    56                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    57                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    58                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    59                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    60                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    61                           ; 
+    62                           ; 
+    63                           ; Code-generator required, PIC16F628A Definitions
+    64                           ; 
+    65                           ; SFR Addresses
+    66  0000                     	;# 
+    67  0001                     	;# 
+    68  0002                     	;# 
+    69  0003                     	;# 
+    70  0004                     	;# 
+    71  0005                     	;# 
+    72  0006                     	;# 
+    73  000A                     	;# 
+    74  000B                     	;# 
+    75  000C                     	;# 
+    76  000E                     	;# 
+    77  000E                     	;# 
+    78  000F                     	;# 
+    79  0010                     	;# 
+    80  0011                     	;# 
+    81  0012                     	;# 
+    82  0015                     	;# 
+    83  0015                     	;# 
+    84  0016                     	;# 
+    85  0017                     	;# 
+    86  0018                     	;# 
+    87  0019                     	;# 
+    88  001A                     	;# 
+    89  001F                     	;# 
+    90  0081                     	;# 
+    91  0085                     	;# 
+    92  0086                     	;# 
+    93  008C                     	;# 
+    94  008E                     	;# 
+    95  0092                     	;# 
+    96  0098                     	;# 
+    97  0099                     	;# 
+    98  009A                     	;# 
+    99  009B                     	;# 
+   100  009C                     	;# 
+   101  009D                     	;# 
+   102  009F                     	;# 
+   103  0000                     	;# 
+   104  0001                     	;# 
+   105  0002                     	;# 
+   106  0003                     	;# 
+   107  0004                     	;# 
+   108  0005                     	;# 
+   109  0006                     	;# 
+   110  000A                     	;# 
+   111  000B                     	;# 
+   112  000C                     	;# 
+   113  000E                     	;# 
+   114  000E                     	;# 
+   115  000F                     	;# 
+   116  0010                     	;# 
+   117  0011                     	;# 
+   118  0012                     	;# 
+   119  0015                     	;# 
+   120  0015                     	;# 
+   121  0016                     	;# 
+   122  0017                     	;# 
+   123  0018                     	;# 
+   124  0019                     	;# 
+   125  001A                     	;# 
+   126  001F                     	;# 
+   127  0081                     	;# 
+   128  0085                     	;# 
+   129  0086                     	;# 
+   130  008C                     	;# 
+   131  008E                     	;# 
+   132  0092                     	;# 
+   133  0098                     	;# 
+   134  0099                     	;# 
+   135  009A                     	;# 
+   136  009B                     	;# 
+   137  009C                     	;# 
+   138  009D                     	;# 
+   139  009F                     	;# 
+   140  0000                     	;# 
+   141  0001                     	;# 
+   142  0002                     	;# 
+   143  0003                     	;# 
+   144  0004                     	;# 
+   145  0005                     	;# 
+   146  0006                     	;# 
+   147  000A                     	;# 
+   148  000B                     	;# 
+   149  000C                     	;# 
+   150  000E                     	;# 
+   151  000E                     	;# 
+   152  000F                     	;# 
+   153  0010                     	;# 
+   154  0011                     	;# 
+   155  0012                     	;# 
+   156  0015                     	;# 
+   157  0015                     	;# 
+   158  0016                     	;# 
+   159  0017                     	;# 
+   160  0018                     	;# 
+   161  0019                     	;# 
+   162  001A                     	;# 
+   163  001F                     	;# 
+   164  0081                     	;# 
+   165  0085                     	;# 
+   166  0086                     	;# 
+   167  008C                     	;# 
+   168  008E                     	;# 
+   169  0092                     	;# 
+   170  0098                     	;# 
+   171  0099                     	;# 
+   172  009A                     	;# 
+   173  009B                     	;# 
+   174  009C                     	;# 
+   175  009D                     	;# 
+   176  009F                     	;# 
+   177  0000                     	;# 
+   178  0001                     	;# 
+   179  0002                     	;# 
+   180  0003                     	;# 
+   181  0004                     	;# 
+   182  0005                     	;# 
+   183  0006                     	;# 
+   184  000A                     	;# 
+   185  000B                     	;# 
+   186  000C                     	;# 
+   187  000E                     	;# 
+   188  000E                     	;# 
+   189  000F                     	;# 
+   190  0010                     	;# 
+   191  0011                     	;# 
+   192  0012                     	;# 
+   193  0015                     	;# 
+   194  0015                     	;# 
+   195  0016                     	;# 
+   196  0017                     	;# 
+   197  0018                     	;# 
+   198  0019                     	;# 
+   199  001A                     	;# 
+   200  001F                     	;# 
+   201  0081                     	;# 
+   202  0085                     	;# 
+   203  0086                     	;# 
+   204  008C                     	;# 
+   205  008E                     	;# 
+   206  0092                     	;# 
+   207  0098                     	;# 
+   208  0099                     	;# 
+   209  009A                     	;# 
+   210  009B                     	;# 
+   211  009C                     	;# 
+   212  009D                     	;# 
+   213  009F                     	;# 
+   214  0000                     	;# 
+   215  0001                     	;# 
+   216  0002                     	;# 
+   217  0003                     	;# 
+   218  0004                     	;# 
+   219  0005                     	;# 
+   220  0006                     	;# 
+   221  000A                     	;# 
+   222  000B                     	;# 
+   223  000C                     	;# 
+   224  000E                     	;# 
+   225  000E                     	;# 
+   226  000F                     	;# 
+   227  0010                     	;# 
+   228  0011                     	;# 
+   229  0012                     	;# 
+   230  0015                     	;# 
+   231  0015                     	;# 
+   232  0016                     	;# 
+   233  0017                     	;# 
+   234  0018                     	;# 
+   235  0019                     	;# 
+   236  001A                     	;# 
+   237  001F                     	;# 
+   238  0081                     	;# 
+   239  0085                     	;# 
+   240  0086                     	;# 
+   241  008C                     	;# 
+   242  008E                     	;# 
+   243  0092                     	;# 
+   244  0098                     	;# 
+   245  0099                     	;# 
+   246  009A                     	;# 
+   247  009B                     	;# 
+   248  009C                     	;# 
+   249  009D                     	;# 
+   250  009F                     	;# 
+   251                           
+   252                           	psect	idataBANK1
+   253  0534                     __pidataBANK1:	
+   254                           
+   255                           ;initializer for _HexToASCII
+   256  0534  3430               	retlw	48
+   257  0535  3431               	retlw	49
+   258  0536  3432               	retlw	50
+   259  0537  3433               	retlw	51
+   260  0538  3434               	retlw	52
+   261  0539  3435               	retlw	53
+   262  053A  3436               	retlw	54
+   263  053B  3437               	retlw	55
+   264  053C  3438               	retlw	56
+   265  053D  3439               	retlw	57
+   266  053E  3441               	retlw	65
+   267  053F  3442               	retlw	66
+   268  0540  3443               	retlw	67
+   269  0541  3444               	retlw	68
+   270  0542  3445               	retlw	69
+   271  0543  3446               	retlw	70
+   272                           
+   273                           	psect	nvBANK1
+   274  00DF                     __pnvBANK1:	
+   275  00DF                     _CEC_IF:	
+   276  00DF                     	ds	1
+   277  0015                     _CCPR1	set	21
+   278  000E                     _TMR1	set	14
+   279  001A                     _RCREG	set	26
+   280  0019                     _TXREG	set	25
+   281  0006                     _PORTBbits	set	6
+   282  0017                     _CCP1CON	set	23
+   283  000C                     _PIR1bits	set	12
+   284  000B                     _INTCON	set	11
+   285  000C                     _PIR1	set	12
+   286  0010                     _T1CON	set	16
+   287  0018                     _RCSTA	set	24
+   288  0006                     _PORTB	set	6
+   289  0005                     _PORTAbits	set	5
+   290  0005                     _PORTA	set	5
+   291  0062                     _CCP1IF	set	98
+   292  0060                     _TMR1IF	set	96
+   293  0065                     _RCIF	set	101
+   294  0064                     _TXIF	set	100
+   295  00C7                     _SPEN	set	199
+   296  0080                     _TMR1ON	set	128
+   297  008C                     _PIE1	set	140
+   298  008C                     _PIE1bits	set	140
+   299  0099                     _SPBRG	set	153
+   300  0098                     _TXSTA	set	152
+   301  0086                     _TRISBbits	set	134
+   302  0085                     _TRISA	set	133
+   303  0460                     _TMR1IE	set	1120
+   304                           
+   305                           	psect	strings
+   306  0418                     __pstrings:	
+   307  0418                     stringtab:	
+   308  0418                     __stringtab:	
+   309  0418                     stringcode:	
+   310                           ;	String table - string pointers are 1 byte each
+   311                           
+   312  0418                     stringdir:	
+   313  0418  3004               	movlw	high stringdir
+   314  0419  008A               	movwf	10
+   315  041A  0804               	movf	4,w
+   316  041B  0A84               	incf	4,f
+   317  041C  0782               	addwf	2,f
+   318  041D                     __stringbase:	
+   319  041D  3400               	retlw	0
+   320  041E                     __end_of__stringtab:	
+   321  041E                     STR_10:	
+   322  041E  343D               	retlw	61	;'='
+   323  041F  343D               	retlw	61	;'='
+   324  0420  343E               	retlw	62	;'>'
+   325  0421  3420               	retlw	32	;' '
+   326  0422  3433               	retlw	51	;'3'
+   327  0423  340A               	retlw	10
+   328  0424  3400               	retlw	0
+   329  0425                     STR_5:	
+   330  0425  343D               	retlw	61	;'='
+   331  0426  343D               	retlw	61	;'='
+   332  0427  343E               	retlw	62	;'>'
+   333  0428  3420               	retlw	32	;' '
+   334  0429  3430               	retlw	48	;'0'
+   335  042A  340A               	retlw	10
+   336  042B  3400               	retlw	0
+   337  042C                     STR_4:	
+   338  042C  343D               	retlw	61	;'='
+   339  042D  343D               	retlw	61	;'='
+   340  042E  343E               	retlw	62	;'>'
+   341  042F  3420               	retlw	32	;' '
+   342  0430  3431               	retlw	49	;'1'
+   343  0431  340A               	retlw	10
+   344  0432  3400               	retlw	0
+   345  0433                     STR_6:	
+   346  0433  343D               	retlw	61	;'='
+   347  0434  343D               	retlw	61	;'='
+   348  0435  343E               	retlw	62	;'>'
+   349  0436  3420               	retlw	32	;' '
+   350  0437  3432               	retlw	50	;'2'
+   351  0438  340A               	retlw	10
+   352  0439  3400               	retlw	0
+   353  043A                     STR_1:	
+   354  043A  343D               	retlw	61	;'='
+   355  043B  343D               	retlw	61	;'='
+   356  043C  343E               	retlw	62	;'>'
+   357  043D  3420               	retlw	32	;' '
+   358  043E  3434               	retlw	52	;'4'
+   359  043F  340A               	retlw	10
+   360  0440  3400               	retlw	0
+   361  0441                     STR_2:	
+   362  0441  343D               	retlw	61	;'='
+   363  0442  343D               	retlw	61	;'='
+   364  0443  343E               	retlw	62	;'>'
+   365  0444  3420               	retlw	32	;' '
+   366  0445  3435               	retlw	53	;'5'
+   367  0446  340A               	retlw	10
+   368  0447  3400               	retlw	0
+   369  0448                     STR_9:	
+   370  0448  344F               	retlw	79	;'O'
+   371  0449  344B               	retlw	75	;'K'
+   372  044A  340A               	retlw	10
+   373  044B  3400               	retlw	0
+   374  044C                     STR_7:	
+   375  044C  3430               	retlw	48	;'0'
+   376  044D  3478               	retlw	120	;'x'
+   377  044E  3430               	retlw	48	;'0'
+   378  044F  3400               	retlw	0
+   379  0433                     
+   380                           ; #config settings
+   381  0000                     
+   382                           	psect	cinit
+   383  0011                     start_initialization:	
+   384  0011                     __initialization:	
+   385                           
+   386                           ; Initialize objects allocated to BANK1
+   387  0011  1683               	bsf	3,5	;RP0=1, select bank1
+   388  0012  1303               	bcf	3,6	;RP1=0, select bank1
+   389  0013  2534               	fcall	__pidataBANK1	;fetch initializer
+   390  0014  00CF               	movwf	__pdataBANK1& (0+127)
+   391  0015  2535               	fcall	__pidataBANK1+1	;fetch initializer
+   392  0016  00D0               	movwf	(__pdataBANK1+1)& (0+127)
+   393  0017  2536               	fcall	__pidataBANK1+2	;fetch initializer
+   394  0018  00D1               	movwf	(__pdataBANK1+2)& (0+127)
+   395  0019  2537               	fcall	__pidataBANK1+3	;fetch initializer
+   396  001A  00D2               	movwf	(__pdataBANK1+3)& (0+127)
+   397  001B  2538               	fcall	__pidataBANK1+4	;fetch initializer
+   398  001C  00D3               	movwf	(__pdataBANK1+4)& (0+127)
+   399  001D  2539               	fcall	__pidataBANK1+5	;fetch initializer
+   400  001E  00D4               	movwf	(__pdataBANK1+5)& (0+127)
+   401  001F  253A               	fcall	__pidataBANK1+6	;fetch initializer
+   402  0020  00D5               	movwf	(__pdataBANK1+6)& (0+127)
+   403  0021  253B               	fcall	__pidataBANK1+7	;fetch initializer
+   404  0022  00D6               	movwf	(__pdataBANK1+7)& (0+127)
+   405  0023  253C               	fcall	__pidataBANK1+8	;fetch initializer
+   406  0024  00D7               	movwf	(__pdataBANK1+8)& (0+127)
+   407  0025  253D               	fcall	__pidataBANK1+9	;fetch initializer
+   408  0026  00D8               	movwf	(__pdataBANK1+9)& (0+127)
+   409  0027  253E               	fcall	__pidataBANK1+10	;fetch initializer
+   410  0028  00D9               	movwf	(__pdataBANK1+10)& (0+127)
+   411  0029  253F               	fcall	__pidataBANK1+11	;fetch initializer
+   412  002A  00DA               	movwf	(__pdataBANK1+11)& (0+127)
+   413  002B  2540               	fcall	__pidataBANK1+12	;fetch initializer
+   414  002C  00DB               	movwf	(__pdataBANK1+12)& (0+127)
+   415  002D  2541               	fcall	__pidataBANK1+13	;fetch initializer
+   416  002E  00DC               	movwf	(__pdataBANK1+13)& (0+127)
+   417  002F  2542               	fcall	__pidataBANK1+14	;fetch initializer
+   418  0030  00DD               	movwf	(__pdataBANK1+14)& (0+127)
+   419  0031  2543               	fcall	__pidataBANK1+15	;fetch initializer
+   420  0032  00DE               	movwf	(__pdataBANK1+15)& (0+127)
+   421                           
+   422                           ; Clear objects allocated to BANK2
+   423  0033  1783               	bsf	3,7	;select IRP bank2
+   424  0034  3020               	movlw	low __pbssBANK2
+   425  0035  0084               	movwf	4
+   426  0036  304D               	movlw	low (__pbssBANK2+45)
+   427  0037  2552               	fcall	clear_ram0
+   428                           
+   429                           ; Clear objects allocated to BANK1
+   430  0038  1383               	bcf	3,7	;select IRP bank0
+   431  0039  30B9               	movlw	low __pbssBANK1
+   432  003A  0084               	movwf	4
+   433  003B  30CF               	movlw	low (__pbssBANK1+22)
+   434  003C  2552               	fcall	clear_ram0
+   435                           
+   436                           ; Clear objects allocated to BANK0
+   437  003D  3044               	movlw	low __pbssBANK0
+   438  003E  0084               	movwf	4
+   439  003F  304F               	movlw	low (__pbssBANK0+11)
+   440  0040  2552               	fcall	clear_ram0
+   441                           
+   442                           ; Clear objects allocated to COMMON
+   443  0041  01FD               	clrf	__pbssCOMMON& (0+127)
+   444  0042                     end_of_initialization:	
+   445                           ;End of C runtime variable initialization code
+   446                           
+   447  0042                     __end_of__initialization:	
+   448  0042  0183               	clrf	3
+   449  0043  2CDD               	ljmp	_main	;jump to C main() function
+   450                           
+   451                           	psect	bssCOMMON
+   452  007D                     __pbssCOMMON:	
+   453  007D                     _step:	
+   454  007D                     	ds	1
+   455                           
+   456                           	psect	bssBANK0
+   457  0044                     __pbssBANK0:	
+   458  0044                     UART_EVENT@F665:	
+   459  0044                     	ds	6
+   460  004A                     _uart_buffer:	
+   461  004A                     	ds	5
+   462                           
+   463                           	psect	bssBANK1
+   464  00B9                     __pbssBANK1:	
+   465  00B9                     CEC_CAPTURE_EVENT@F682:	
+   466  00B9                     	ds	22
+   467                           
+   468                           	psect	dataBANK1
+   469  00CF                     __pdataBANK1:	
+   470  00CF                     _HexToASCII:	
+   471  00CF                     	ds	16
+   472                           
+   473                           	psect	bssBANK2
+   474  0120                     __pbssBANK2:	
+   475  0120                     _CEC_OUTPUT_BUFFER:	
+   476  0120                     	ds	45
+   477                           
+   478                           	psect	clrtext
+   479  0552                     clear_ram0:	
+   480                           ;	Called with FSR containing the base address, and
+   481                           ;	W with the last address+1
+   482                           
+   483  0552  0064               	clrwdt	;clear the watchdog before getting into this loop
+   484  0553                     clrloop0:	
+   485  0553  0180               	clrf	0	;clear RAM location pointed to by FSR
+   486  0554  0A84               	incf	4,f	;increment pointer
+   487  0555  0604               	xorwf	4,w	;XOR with final address
+   488  0556  1903               	btfsc	3,2	;have we reached the end yet?
+   489  0557  3400               	retlw	0	;all done for this memory range, return
+   490  0558  0604               	xorwf	4,w	;XOR again to restore value
+   491  0559  2D53               	goto	clrloop0	;do the next byte
+   492                           
+   493                           	psect	cstackBANK1
+   494  00A0                     __pcstackBANK1:	
+   495  00A0                     CEC_CAPTURE_EVENT@timing_buffer:	
+   496                           
+   497                           ; 22 bytes @ 0x0
+   498  00A0                     	ds	22
+   499  00B6                     CEC_CAPTURE_EVENT@frame_buffer:	
+   500                           
+   501                           ; 2 bytes @ 0x16
+   502  00B6                     	ds	2
+   503  00B8                     CEC_CAPTURE_EVENT@bit_counter:	
+   504                           
+   505                           ; 1 bytes @ 0x18
+   506  00B8                     	ds	1
+   507                           
+   508                           	psect	cstackCOMMON
+   509  0070                     __pcstackCOMMON:	
+   510  0070                     ?_CEC_CAPTURE_EVENT:	
+   511  0070                     ?_UART_puts:	
+   512                           ; 1 bytes @ 0x0
+   513                           
+   514  0070                     ?_clear_buffer:	
+   515                           ; 1 bytes @ 0x0
+   516                           
+   517  0070                     ?_CEC_SEND:	
+   518                           ; 1 bytes @ 0x0
+   519                           
+   520  0070                     ?_clear_bits:	
+   521                           ; 1 bytes @ 0x0
+   522                           
+   523  0070                     ??_clear_bits:	
+   524                           ; 1 bytes @ 0x0
+   525                           
+   526  0070                     ?_CEC_SC_SENDBUFFER:	
+   527                           ; 1 bytes @ 0x0
+   528                           
+   529  0070                     ??_CEC_SC_SENDBUFFER:	
+   530                           ; 1 bytes @ 0x0
+   531                           
+   532  0070                     ?_main:	
+   533                           ; 1 bytes @ 0x0
+   534                           
+   535  0070                     ?_UART_EVENT:	
+   536                           ; 1 bytes @ 0x0
+   537                           
+   538  0070                     ?_ISR:	
+   539                           ; 1 bytes @ 0x0
+   540                           
+   541  0070                     ?_add_frame:	
+   542                           ; 1 bytes @ 0x0
+   543                           
+   544  0070                     ?i1_UART_puts:	
+   545                           ; 1 bytes @ 0x0
+   546                           
+   547  0070                     ??i1_UART_puts:	
+   548                           ; 1 bytes @ 0x0
+   549                           
+   550  0070                     clear_bits@frame:	
+   551                           ; 1 bytes @ 0x0
+   552                           
+   553  0070                     add_frame@frame:	
+   554                           ; 1 bytes @ 0x0
+   555                           
+   556                           
+   557                           ; 4 bytes @ 0x0
+   558  0070                     	ds	1
+   559  0071                     ??_clear_buffer:	
+   560  0071                     i1UART_puts@c:	
+   561                           ; 1 bytes @ 0x1
+   562                           
+   563                           
+   564                           ; 1 bytes @ 0x1
+   565  0071                     	ds	1
+   566  0072                     clear_buffer@i:	
+   567                           
+   568                           ; 2 bytes @ 0x2
+   569  0072                     	ds	2
+   570  0074                     clear_buffer@buffer:	
+   571  0074                     add_frame@buffer:	
+   572                           ; 1 bytes @ 0x4
+   573                           
+   574                           
+   575                           ; 1 bytes @ 0x4
+   576  0074                     	ds	1
+   577  0075                     ??_add_frame:	
+   578                           
+   579                           ; 1 bytes @ 0x5
+   580  0075                     	ds	2
+   581  0077                     ?_CEC_PUSH_BUFFER:	
+   582  0077                     CEC_PUSH_BUFFER@frame:	
+   583                           ; 1 bytes @ 0x7
+   584                           
+   585                           
+   586                           ; 2 bytes @ 0x7
+   587  0077                     	ds	2
+   588  0079                     ??_CEC_PUSH_BUFFER:	
+   589                           
+   590                           ; 1 bytes @ 0x9
+   591  0079                     	ds	3
+   592  007C                     ??_CEC_SEND:	
+   593  007C                     ISR@rx:	
+   594                           ; 1 bytes @ 0xC
+   595                           
+   596                           
+   597                           ; 1 bytes @ 0xC
+   598  007C                     	ds	1
+   599                           
+   600                           	psect	cstackBANK0
+   601  0020                     __pcstackBANK0:	
+   602  0020                     CEC_SC_SENDBUFFER@data:	
+   603  0020                     CEC_PUSH_BUFFER@Data:	
+   604                           ; 2 bytes @ 0x0
+   605                           
+   606                           
+   607                           ; 4 bytes @ 0x0
+   608  0020                     	ds	2
+   609  0022                     CEC_SC_SENDBUFFER@bits:	
+   610                           
+   611                           ; 1 bytes @ 0x2
+   612  0022                     	ds	1
+   613  0023                     CEC_SC_SENDBUFFER@frame:	
+   614                           
+   615                           ; 1 bytes @ 0x3
+   616  0023                     	ds	1
+   617  0024                     CEC_SC_SENDBUFFER@buffer:	
+   618                           
+   619                           ; 1 bytes @ 0x4
+   620  0024                     	ds	1
+   621  0025                     ??_UART_EVENT:	
+   622                           
+   623                           ; 1 bytes @ 0x5
+   624  0025                     	ds	8
+   625  002D                     UART_EVENT@data:	
+   626                           
+   627                           ; 6 bytes @ 0xD
+   628  002D                     	ds	6
+   629  0033                     UART_EVENT@i_223:	
+   630                           
+   631                           ; 1 bytes @ 0x13
+   632  0033                     	ds	1
+   633  0034                     UART_EVENT@i_225:	
+   634                           
+   635                           ; 1 bytes @ 0x14
+   636  0034                     	ds	1
+   637  0035                     UART_EVENT@i_227:	
+   638                           
+   639                           ; 1 bytes @ 0x15
+   640  0035                     	ds	1
+   641  0036                     UART_EVENT@i_229:	
+   642                           
+   643                           ; 1 bytes @ 0x16
+   644  0036                     	ds	1
+   645  0037                     UART_EVENT@i_230:	
+   646                           
+   647                           ; 1 bytes @ 0x17
+   648  0037                     	ds	1
+   649  0038                     UART_EVENT@i:	
+   650                           
+   651                           ; 1 bytes @ 0x18
+   652  0038                     	ds	1
+   653  0039                     ??_ISR:	
+   654                           
+   655                           ; 1 bytes @ 0x19
+   656  0039                     	ds	5
+   657  003E                     ??_UART_puts:	
+   658                           
+   659                           ; 1 bytes @ 0x1E
+   660  003E                     	ds	1
+   661  003F                     UART_puts@c:	
+   662                           
+   663                           ; 1 bytes @ 0x1F
+   664  003F                     	ds	1
+   665  0040                     ??_CEC_CAPTURE_EVENT:	
+   666                           
+   667                           ; 1 bytes @ 0x20
+   668  0040                     	ds	4
+   669  0044                     ??_main:	
+   670                           
+   671                           	psect	maintext
+   672  04DD                     __pmaintext:	
+   673                           ; 1 bytes @ 0x24
+   674 ;;
+   675 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   676 ;;
+   677 ;; *************** function _main *****************
+   678 ;; Defined at:
+   679 ;;		line 48 in file "main.c"
+   680 ;; Parameters:    Size  Location     Type
+   681 ;;		None
+   682 ;; Auto vars:     Size  Location     Type
+   683 ;;		None
+   684 ;; Return value:  Size  Location     Type
+   685 ;;                  1    wreg      void 
+   686 ;; Registers used:
+   687 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   688 ;; Tracked objects:
+   689 ;;		On entry : B00/0
+   690 ;;		On exit  : 0/0
+   691 ;;		Unchanged: 0/0
+   692 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   693 ;;      Params:         0       0       0       0
+   694 ;;      Locals:         0       0       0       0
+   695 ;;      Temps:          0       0       0       0
+   696 ;;      Totals:         0       0       0       0
+   697 ;;Total ram usage:        0 bytes
+   698 ;; Hardware stack levels required when called:    6
+   699 ;; This function calls:
+   700 ;;		_CEC_CAPTURE_EVENT
+   701 ;; This function is called by:
+   702 ;;		Startup code after reset
+   703 ;; This function uses a non-reentrant model
+   704 ;;
+   705                           
+   706                           
+   707                           ;psect for function _main
+   708  04DD                     _main:	
+   709                           
+   710                           ;main.c: 52: {PORTA = 0x01; TRISA = 0; PORTAbits.RA0 = 1; PORTB = 0x00; TRISBbits.TRISB0
+      +                           = 1; TRISBbits.TRISB2 = 0;};
+   711                           
+   712                           ;incstack = 0
+   713                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   714  04DD  3001               	movlw	1
+   715  04DE  1283               	bcf	3,5	;RP0=0, select bank0
+   716  04DF  1303               	bcf	3,6	;RP1=0, select bank0
+   717  04E0  0085               	movwf	5	;volatile
+   718  04E1  1683               	bsf	3,5	;RP0=1, select bank1
+   719  04E2  1303               	bcf	3,6	;RP1=0, select bank1
+   720  04E3  0185               	clrf	5	;volatile
+   721  04E4  1283               	bcf	3,5	;RP0=0, select bank0
+   722  04E5  1303               	bcf	3,6	;RP1=0, select bank0
+   723  04E6  1405               	bsf	5,0	;volatile
+   724  04E7  0186               	clrf	6	;volatile
+   725  04E8  1683               	bsf	3,5	;RP0=1, select bank1
+   726  04E9  1303               	bcf	3,6	;RP1=0, select bank1
+   727  04EA  1406               	bsf	6,0	;volatile
+   728  04EB  1106               	bcf	6,2	;volatile
+   729                           
+   730                           ;main.c: 56: {TXSTA = 0x24; RCSTA = 0x90; SPBRG = 129;};
+   731  04EC  3024               	movlw	36
+   732  04ED  0098               	movwf	24	;volatile
+   733  04EE  3090               	movlw	144
+   734  04EF  1283               	bcf	3,5	;RP0=0, select bank0
+   735  04F0  1303               	bcf	3,6	;RP1=0, select bank0
+   736  04F1  0098               	movwf	24	;volatile
+   737  04F2  3081               	movlw	129
+   738  04F3  1683               	bsf	3,5	;RP0=1, select bank1
+   739  04F4  1303               	bcf	3,6	;RP1=0, select bank1
+   740  04F5  0099               	movwf	25	;volatile
+   741                           
+   742                           ;main.c: 60: {PIE1bits.TMR1IE = 1; T1CON = 0b00000000; TMR1 = 0x0;};
+   743  04F6  140C               	bsf	12,0	;volatile
+   744  04F7  1283               	bcf	3,5	;RP0=0, select bank0
+   745  04F8  1303               	bcf	3,6	;RP1=0, select bank0
+   746  04F9  0190               	clrf	16	;volatile
+   747  04FA  018E               	clrf	14	;volatile
+   748  04FB  018F               	clrf	15	;volatile
+   749                           
+   750                           ;main.c: 64: { PIR1 = 0x0; INTCON = 0b11000000; PIE1 = 0b00100101; PIE1bits.TMR1IE=1; PI
+      +                          E1bits.CCP1IE=1;};
+   751  04FC  018C               	clrf	12	;volatile
+   752  04FD  30C0               	movlw	192
+   753  04FE  008B               	movwf	11	;volatile
+   754  04FF  3025               	movlw	37
+   755  0500  1683               	bsf	3,5	;RP0=1, select bank1
+   756  0501  1303               	bcf	3,6	;RP1=0, select bank1
+   757  0502  008C               	movwf	12	;volatile
+   758  0503  140C               	bsf	12,0	;volatile
+   759  0504  150C               	bsf	12,2	;volatile
+   760                           
+   761                           ;main.c: 65: CEC_CAPTURE_EVENT();
+   762  0505  2044               	fcall	_CEC_CAPTURE_EVENT
+   763  0506  2CDD               	goto	$	;# 
+   764  0507  2810               	ljmp	start
+   765  0508                     __end_of_main:	
+   766                           
+   767                           	psect	text1
+   768  0044                     __ptext1:	
+   769 ;; *************** function _CEC_CAPTURE_EVENT *****************
+   770 ;; Defined at:
+   771 ;;		line 149 in file "main.c"
+   772 ;; Parameters:    Size  Location     Type
+   773 ;;		None
+   774 ;; Auto vars:     Size  Location     Type
+   775 ;;  timing_buffe   22    0[BANK1 ] unsigned short [11]
+   776 ;;  frame_buffer    2   22[BANK1 ] unsigned short 
+   777 ;;  bit_counter     1   24[BANK1 ] unsigned char 
+   778 ;; Return value:  Size  Location     Type
+   779 ;;                  1    wreg      void 
+   780 ;; Registers used:
+   781 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   782 ;; Tracked objects:
+   783 ;;		On entry : 0/0
+   784 ;;		On exit  : 0/0
+   785 ;;		Unchanged: 0/0
+   786 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   787 ;;      Params:         0       0       0       0
+   788 ;;      Locals:         0       0      25       0
+   789 ;;      Temps:          0       4       0       0
+   790 ;;      Totals:         0       4      25       0
+   791 ;;Total ram usage:       29 bytes
+   792 ;; Hardware stack levels used:    1
+   793 ;; Hardware stack levels required when called:    5
+   794 ;; This function calls:
+   795 ;;		_UART_puts
+   796 ;; This function is called by:
+   797 ;;		_main
+   798 ;; This function uses a non-reentrant model
+   799 ;;
+   800                           
+   801                           
+   802                           ;psect for function _CEC_CAPTURE_EVENT
+   803  0044                     _CEC_CAPTURE_EVENT:	
+   804                           
+   805                           ;main.c: 150: PORTBbits.RB3 = 1;
+   806                           
+   807                           ;incstack = 0
+   808                           ; Regs used in _CEC_CAPTURE_EVENT: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   809  0044  1283               	bcf	3,5	;RP0=0, select bank0
+   810  0045  1303               	bcf	3,6	;RP1=0, select bank0
+   811  0046  1586               	bsf	6,3	;volatile
+   812                           
+   813                           ;main.c: 151: TRISBbits.TRISB3 = 1;
+   814  0047  1683               	bsf	3,5	;RP0=1, select bank1
+   815  0048  1303               	bcf	3,6	;RP1=0, select bank1
+   816  0049  1586               	bsf	6,3	;volatile
+   817                           
+   818                           ;main.c: 152: PORTA = 0;
+   819  004A  1283               	bcf	3,5	;RP0=0, select bank0
+   820  004B  1303               	bcf	3,6	;RP1=0, select bank0
+   821  004C  0185               	clrf	5	;volatile
+   822                           
+   823                           ;main.c: 153: unsigned short timing_buffer[11]={0,0,0,0,0,0,0,0,0,0};
+   824  004D  30A0               	movlw	CEC_CAPTURE_EVENT@timing_buffer& (0+255)
+   825  004E  0084               	movwf	4
+   826  004F  30B9               	movlw	low CEC_CAPTURE_EVENT@F682
+   827  0050  00C0               	movwf	??_CEC_CAPTURE_EVENT
+   828  0051  0804               	movf	4,w
+   829  0052  00C1               	movwf	??_CEC_CAPTURE_EVENT+1
+   830  0053  3016               	movlw	22
+   831  0054  00C2               	movwf	??_CEC_CAPTURE_EVENT+2
+   832  0055                     u900:	
+   833  0055  0840               	movf	??_CEC_CAPTURE_EVENT,w
+   834  0056  0084               	movwf	4
+   835  0057  1383               	bcf	3,7	;select IRP bank1
+   836  0058  0800               	movf	0,w
+   837  0059  00C3               	movwf	??_CEC_CAPTURE_EVENT+3
+   838  005A  0AC0               	incf	??_CEC_CAPTURE_EVENT,f
+   839  005B  0841               	movf	??_CEC_CAPTURE_EVENT+1,w
+   840  005C  0084               	movwf	4
+   841  005D  0843               	movf	??_CEC_CAPTURE_EVENT+3,w
+   842  005E  0080               	movwf	0
+   843  005F  0AC1               	incf	??_CEC_CAPTURE_EVENT+1,f
+   844  0060  0BC2               	decfsz	??_CEC_CAPTURE_EVENT+2,f
+   845  0061  2855               	goto	u900
+   846                           
+   847                           ;main.c: 154: unsigned char bit_counter=0;
+   848  0062  1683               	bsf	3,5	;RP0=1, select bank1
+   849  0063  1303               	bcf	3,6	;RP1=0, select bank1
+   850  0064  01B8               	clrf	CEC_CAPTURE_EVENT@bit_counter^(0+128)
+   851                           
+   852                           ;main.c: 155: unsigned short frame_buffer=0;
+   853  0065  01B6               	clrf	CEC_CAPTURE_EVENT@frame_buffer^(0+128)
+   854  0066  01B7               	clrf	(CEC_CAPTURE_EVENT@frame_buffer+1)^(0+128)
+   855  0067                     l1273:	
+   856                           ;main.c: 156: LOOP:
+   857                           
+   858                           
+   859                           ;main.c: 157: CEC_IF=0;
+   860  0067  01DF               	clrf	_CEC_IF^(0+128)	;volatile
+   861                           
+   862                           ;main.c: 158: {PORTBbits.RB3 = 1; TRISBbits.TRISB3 = 1; TMR1 = 0; PIE1bits.CCP1IE=0; PIR
+      +                          1bits.CCP1IF=0; CCP1CON=0; if(0) {CCP1CON = 0b0101;} else {CCP1CON = 0b0100;} PIE1bits.C
+      +                          CP1IE=1; {PIR1bits.TMR1IF=0;TMR1=0x00;TMR1ON=1;TMR1IE=1;}; };
+   863  0068  1283               	bcf	3,5	;RP0=0, select bank0
+   864  0069  1303               	bcf	3,6	;RP1=0, select bank0
+   865  006A  1586               	bsf	6,3	;volatile
+   866  006B  1683               	bsf	3,5	;RP0=1, select bank1
+   867  006C  1303               	bcf	3,6	;RP1=0, select bank1
+   868  006D  1586               	bsf	6,3	;volatile
+   869  006E  1283               	bcf	3,5	;RP0=0, select bank0
+   870  006F  1303               	bcf	3,6	;RP1=0, select bank0
+   871  0070  018E               	clrf	14	;volatile
+   872  0071  018F               	clrf	15	;volatile
+   873  0072  1683               	bsf	3,5	;RP0=1, select bank1
+   874  0073  1303               	bcf	3,6	;RP1=0, select bank1
+   875  0074  110C               	bcf	12,2	;volatile
+   876  0075  1283               	bcf	3,5	;RP0=0, select bank0
+   877  0076  1303               	bcf	3,6	;RP1=0, select bank0
+   878  0077  110C               	bcf	12,2	;volatile
+   879  0078  0197               	clrf	23	;volatile
+   880  0079  3004               	movlw	4
+   881  007A  0097               	movwf	23	;volatile
+   882  007B  1683               	bsf	3,5	;RP0=1, select bank1
+   883  007C  1303               	bcf	3,6	;RP1=0, select bank1
+   884  007D  150C               	bsf	12,2	;volatile
+   885  007E  1283               	bcf	3,5	;RP0=0, select bank0
+   886  007F  1303               	bcf	3,6	;RP1=0, select bank0
+   887  0080  100C               	bcf	12,0	;volatile
+   888  0081  018E               	clrf	14	;volatile
+   889  0082  018F               	clrf	15	;volatile
+   890  0083  1410               	bsf	16,0	;volatile
+   891  0084  1683               	bsf	3,5	;RP0=1, select bank1
+   892  0085  1303               	bcf	3,6	;RP1=0, select bank1
+   893  0086  140C               	bsf	12,0	;volatile
+   894  0087                     l1301:	
+   895                           ;main.c: 159: while(!CEC_IF){}
+   896                           
+   897  0087  085F               	movf	_CEC_IF^(0+128),w	;volatile
+   898  0088  1903               	btfsc	3,2
+   899  0089  2887               	goto	l1301
+   900                           
+   901                           ;main.c: 160: CEC_IF = 0;
+   902  008A  01DF               	clrf	_CEC_IF^(0+128)	;volatile
+   903                           
+   904                           ;main.c: 161: {PORTBbits.RB3 = 1; TRISBbits.TRISB3 = 1; TMR1 = 0; PIE1bits.CCP1IE=0; PIR
+      +                          1bits.CCP1IF=0; CCP1CON=0; if(1) {CCP1CON = 0b0101;} else {CCP1CON = 0b0100;} PIE1bits.C
+      +                          CP1IE=1; {PIR1bits.TMR1IF=0;TMR1=0x00;TMR1ON=1;TMR1IE=1;}; };
+   905  008B  1283               	bcf	3,5	;RP0=0, select bank0
+   906  008C  1303               	bcf	3,6	;RP1=0, select bank0
+   907  008D  1586               	bsf	6,3	;volatile
+   908  008E  1683               	bsf	3,5	;RP0=1, select bank1
+   909  008F  1303               	bcf	3,6	;RP1=0, select bank1
+   910  0090  1586               	bsf	6,3	;volatile
+   911  0091  1283               	bcf	3,5	;RP0=0, select bank0
+   912  0092  1303               	bcf	3,6	;RP1=0, select bank0
+   913  0093  018E               	clrf	14	;volatile
+   914  0094  018F               	clrf	15	;volatile
+   915  0095  1683               	bsf	3,5	;RP0=1, select bank1
+   916  0096  1303               	bcf	3,6	;RP1=0, select bank1
+   917  0097  110C               	bcf	12,2	;volatile
+   918  0098  1283               	bcf	3,5	;RP0=0, select bank0
+   919  0099  1303               	bcf	3,6	;RP1=0, select bank0
+   920  009A  110C               	bcf	12,2	;volatile
+   921  009B  0197               	clrf	23	;volatile
+   922  009C  3005               	movlw	5
+   923  009D  0097               	movwf	23	;volatile
+   924  009E  1683               	bsf	3,5	;RP0=1, select bank1
+   925  009F  1303               	bcf	3,6	;RP1=0, select bank1
+   926  00A0  150C               	bsf	12,2	;volatile
+   927  00A1  1283               	bcf	3,5	;RP0=0, select bank0
+   928  00A2  1303               	bcf	3,6	;RP1=0, select bank0
+   929  00A3  100C               	bcf	12,0	;volatile
+   930  00A4  018E               	clrf	14	;volatile
+   931  00A5  018F               	clrf	15	;volatile
+   932  00A6  1410               	bsf	16,0	;volatile
+   933  00A7  1683               	bsf	3,5	;RP0=1, select bank1
+   934  00A8  1303               	bcf	3,6	;RP1=0, select bank1
+   935  00A9  140C               	bsf	12,0	;volatile
+   936  00AA                     l1327:	
+   937                           ;main.c: 162: while(!CEC_IF){}
+   938                           
+   939  00AA  085F               	movf	_CEC_IF^(0+128),w	;volatile
+   940  00AB  1903               	btfsc	3,2
+   941  00AC  28AA               	goto	l1327
+   942                           
+   943                           ;main.c: 163: timing_buffer[bit_counter] = CCPR1;
+   944  00AD  0838               	movf	CEC_CAPTURE_EVENT@bit_counter^(0+128),w
+   945  00AE  1283               	bcf	3,5	;RP0=0, select bank0
+   946  00AF  1303               	bcf	3,6	;RP1=0, select bank0
+   947  00B0  00C0               	movwf	??_CEC_CAPTURE_EVENT
+   948  00B1  0740               	addwf	??_CEC_CAPTURE_EVENT,w
+   949  00B2  3EA0               	addlw	(low (CEC_CAPTURE_EVENT@timing_buffer| 0))& (0+255)
+   950  00B3  0084               	movwf	4
+   951  00B4  0815               	movf	21,w	;volatile
+   952  00B5  1383               	bcf	3,7	;select IRP bank1
+   953  00B6  0080               	movwf	0
+   954  00B7  0A84               	incf	4,f
+   955  00B8  0816               	movf	22,w	;volatile
+   956  00B9  0080               	movwf	0
+   957                           
+   958                           ;main.c: 165: bit_counter++;
+   959  00BA  3001               	movlw	1
+   960  00BB  00C0               	movwf	??_CEC_CAPTURE_EVENT
+   961  00BC  0840               	movf	??_CEC_CAPTURE_EVENT,w
+   962  00BD  1683               	bsf	3,5	;RP0=1, select bank1
+   963  00BE  1303               	bcf	3,6	;RP1=0, select bank1
+   964  00BF  07B8               	addwf	CEC_CAPTURE_EVENT@bit_counter^(0+128),f
+   965                           
+   966                           ;main.c: 166: if(bit_counter==11){
+   967  00C0  300B               	movlw	11
+   968  00C1  0638               	xorwf	CEC_CAPTURE_EVENT@bit_counter^(0+128),w
+   969  00C2  1D03               	btfss	3,2
+   970  00C3  2867               	goto	l1273
+   971                           
+   972                           ;main.c: 171: {TMR1ON=0;};
+   973                           
+   974                           ;main.c: 170: SEND_DATA:
+   975                           
+   976                           ;main.c: 168: }
+   977                           ;main.c: 169: goto LOOP;
+   978                           
+   979                           ;main.c: 167: goto SEND_DATA;
+   980  00C4  1283               	bcf	3,5	;RP0=0, select bank0
+   981  00C5  1303               	bcf	3,6	;RP1=0, select bank0
+   982  00C6  1010               	bcf	16,0	;volatile
+   983                           
+   984                           ;main.c: 172: if((timing_buffer[0]> 17500) && (timing_buffer[0]<19500)){
+   985  00C7  3044               	movlw	68
+   986  00C8  1683               	bsf	3,5	;RP0=1, select bank1
+   987  00C9  1303               	bcf	3,6	;RP1=0, select bank1
+   988  00CA  0221               	subwf	(CEC_CAPTURE_EVENT@timing_buffer+1)^(0+128),w
+   989  00CB  305D               	movlw	93
+   990  00CC  1903               	skipnz
+   991  00CD  0220               	subwf	CEC_CAPTURE_EVENT@timing_buffer^(0+128),w
+   992  00CE  1C03               	skipc
+   993  00CF  29A0               	goto	l1375
+   994  00D0  304C               	movlw	76
+   995  00D1  0221               	subwf	(CEC_CAPTURE_EVENT@timing_buffer+1)^(0+128),w
+   996  00D2  302C               	movlw	44
+   997  00D3  1903               	skipnz
+   998  00D4  0220               	subwf	CEC_CAPTURE_EVENT@timing_buffer^(0+128),w
+   999  00D5  1803               	skipnc
+  1000  00D6  29A0               	goto	l1375
+  1001                           
+  1002                           ;main.c: 173: for(bit_counter=1;bit_counter<11;bit_counter++){
+  1003  00D7  01B8               	clrf	CEC_CAPTURE_EVENT@bit_counter^(0+128)
+  1004  00D8  0AB8               	incf	CEC_CAPTURE_EVENT@bit_counter^(0+128),f
+  1005  00D9  300B               	movlw	11
+  1006  00DA  0238               	subwf	CEC_CAPTURE_EVENT@bit_counter^(0+128),w
+  1007  00DB  1803               	btfsc	3,0
+  1008  00DC  2959               	goto	l1365
+  1009  00DD                     l1347:	
+  1010                           
+  1011                           ;main.c: 174: if((timing_buffer[bit_counter]>2000) &&(timing_buffer[bit_counter]<4000)){
+  1012  00DD  0838               	movf	CEC_CAPTURE_EVENT@bit_counter^(0+128),w
+  1013  00DE  1283               	bcf	3,5	;RP0=0, select bank0
+  1014  00DF  1303               	bcf	3,6	;RP1=0, select bank0
+  1015  00E0  00C0               	movwf	??_CEC_CAPTURE_EVENT
+  1016  00E1  0740               	addwf	??_CEC_CAPTURE_EVENT,w
+  1017  00E2  3EA0               	addlw	(low (CEC_CAPTURE_EVENT@timing_buffer| 0))& (0+255)
+  1018  00E3  0084               	movwf	4
+  1019  00E4  1383               	bcf	3,7	;select IRP bank1
+  1020  00E5  0800               	movf	0,w
+  1021  00E6  00C1               	movwf	??_CEC_CAPTURE_EVENT+1
+  1022  00E7  0A84               	incf	4,f
+  1023  00E8  0800               	movf	0,w
+  1024  00E9  00C2               	movwf	??_CEC_CAPTURE_EVENT+2
+  1025  00EA  3007               	movlw	7
+  1026  00EB  0242               	subwf	??_CEC_CAPTURE_EVENT+2,w
+  1027  00EC  30D1               	movlw	209
+  1028  00ED  1903               	skipnz
+  1029  00EE  0241               	subwf	??_CEC_CAPTURE_EVENT+1,w
+  1030  00EF  1C03               	skipc
+  1031  00F0  2916               	goto	l1353
+  1032  00F1  1683               	bsf	3,5	;RP0=1, select bank1
+  1033  00F2  1303               	bcf	3,6	;RP1=0, select bank1
+  1034  00F3  0838               	movf	CEC_CAPTURE_EVENT@bit_counter^(0+128),w
+  1035  00F4  1283               	bcf	3,5	;RP0=0, select bank0
+  1036  00F5  1303               	bcf	3,6	;RP1=0, select bank0
+  1037  00F6  00C0               	movwf	??_CEC_CAPTURE_EVENT
+  1038  00F7  0740               	addwf	??_CEC_CAPTURE_EVENT,w
+  1039  00F8  3EA0               	addlw	(low (CEC_CAPTURE_EVENT@timing_buffer| 0))& (0+255)
+  1040  00F9  0084               	movwf	4
+  1041  00FA  0800               	movf	0,w
+  1042  00FB  00C1               	movwf	??_CEC_CAPTURE_EVENT+1
+  1043  00FC  0A84               	incf	4,f
+  1044  00FD  0800               	movf	0,w
+  1045  00FE  00C2               	movwf	??_CEC_CAPTURE_EVENT+2
+  1046  00FF  300F               	movlw	15
+  1047  0100  0242               	subwf	??_CEC_CAPTURE_EVENT+2,w
+  1048  0101  30A0               	movlw	160
+  1049  0102  1903               	skipnz
+  1050  0103  0241               	subwf	??_CEC_CAPTURE_EVENT+1,w
+  1051  0104  1803               	skipnc
+  1052  0105  2916               	goto	l1353
+  1053                           
+  1054                           ;main.c: 176: frame_buffer<<=1;
+  1055  0106  3001               	movlw	1
+  1056  0107  1683               	bsf	3,5	;RP0=1, select bank1
+  1057  0108  1303               	bcf	3,6	;RP1=0, select bank1
+  1058  0109                     u995:	
+  1059  0109  1003               	clrc
+  1060  010A  0DB6               	rlf	CEC_CAPTURE_EVENT@frame_buffer^(0+128),f
+  1061  010B  0DB7               	rlf	(CEC_CAPTURE_EVENT@frame_buffer+1)^(0+128),f
+  1062  010C  3EFF               	addlw	-1
+  1063  010D  1D03               	skipz
+  1064  010E  2909               	goto	u995
+  1065                           
+  1066                           ;main.c: 177: frame_buffer+=1;
+  1067  010F  3001               	movlw	1
+  1068  0110  07B6               	addwf	CEC_CAPTURE_EVENT@frame_buffer^(0+128),f
+  1069  0111  1803               	skipnc
+  1070  0112  0AB7               	incf	(CEC_CAPTURE_EVENT@frame_buffer+1)^(0+128),f
+  1071  0113  3000               	movlw	0
+  1072  0114  07B7               	addwf	(CEC_CAPTURE_EVENT@frame_buffer+1)^(0+128),f
+  1073                           
+  1074                           ;main.c: 178: }else if((timing_buffer[bit_counter]>6500) &&(timing_buffer[bit_counter]<8
+      +                          500)){
+  1075  0115  294D               	goto	l1361
+  1076  0116                     l1353:	
+  1077  0116  1683               	bsf	3,5	;RP0=1, select bank1
+  1078  0117  1303               	bcf	3,6	;RP1=0, select bank1
+  1079  0118  0838               	movf	CEC_CAPTURE_EVENT@bit_counter^(0+128),w
+  1080  0119  1283               	bcf	3,5	;RP0=0, select bank0
+  1081  011A  1303               	bcf	3,6	;RP1=0, select bank0
+  1082  011B  00C0               	movwf	??_CEC_CAPTURE_EVENT
+  1083  011C  0740               	addwf	??_CEC_CAPTURE_EVENT,w
+  1084  011D  3EA0               	addlw	(low (CEC_CAPTURE_EVENT@timing_buffer| 0))& (0+255)
+  1085  011E  0084               	movwf	4
+  1086  011F  0800               	movf	0,w
+  1087  0120  00C1               	movwf	??_CEC_CAPTURE_EVENT+1
+  1088  0121  0A84               	incf	4,f
+  1089  0122  0800               	movf	0,w
+  1090  0123  00C2               	movwf	??_CEC_CAPTURE_EVENT+2
+  1091  0124  3019               	movlw	25
+  1092  0125  0242               	subwf	??_CEC_CAPTURE_EVENT+2,w
+  1093  0126  3065               	movlw	101
+  1094  0127  1903               	skipnz
+  1095  0128  0241               	subwf	??_CEC_CAPTURE_EVENT+1,w
+  1096  0129  1C03               	skipc
+  1097  012A  294A               	goto	l1359
+  1098  012B  1683               	bsf	3,5	;RP0=1, select bank1
+  1099  012C  1303               	bcf	3,6	;RP1=0, select bank1
+  1100  012D  0838               	movf	CEC_CAPTURE_EVENT@bit_counter^(0+128),w
+  1101  012E  1283               	bcf	3,5	;RP0=0, select bank0
+  1102  012F  1303               	bcf	3,6	;RP1=0, select bank0
+  1103  0130  00C0               	movwf	??_CEC_CAPTURE_EVENT
+  1104  0131  0740               	addwf	??_CEC_CAPTURE_EVENT,w
+  1105  0132  3EA0               	addlw	(low (CEC_CAPTURE_EVENT@timing_buffer| 0))& (0+255)
+  1106  0133  0084               	movwf	4
+  1107  0134  0800               	movf	0,w
+  1108  0135  00C1               	movwf	??_CEC_CAPTURE_EVENT+1
+  1109  0136  0A84               	incf	4,f
+  1110  0137  0800               	movf	0,w
+  1111  0138  00C2               	movwf	??_CEC_CAPTURE_EVENT+2
+  1112  0139  3021               	movlw	33
+  1113  013A  0242               	subwf	??_CEC_CAPTURE_EVENT+2,w
+  1114  013B  3034               	movlw	52
+  1115  013C  1903               	skipnz
+  1116  013D  0241               	subwf	??_CEC_CAPTURE_EVENT+1,w
+  1117  013E  1803               	skipnc
+  1118  013F  294A               	goto	l1359
+  1119                           
+  1120                           ;main.c: 180: frame_buffer<<=1;
+  1121  0140  3001               	movlw	1
+  1122  0141  1683               	bsf	3,5	;RP0=1, select bank1
+  1123  0142  1303               	bcf	3,6	;RP1=0, select bank1
+  1124  0143                     u1025:	
+  1125  0143  1003               	clrc
+  1126  0144  0DB6               	rlf	CEC_CAPTURE_EVENT@frame_buffer^(0+128),f
+  1127  0145  0DB7               	rlf	(CEC_CAPTURE_EVENT@frame_buffer+1)^(0+128),f
+  1128  0146  3EFF               	addlw	-1
+  1129  0147  1D03               	skipz
+  1130  0148  2943               	goto	u1025
+  1131                           
+  1132                           ;main.c: 181: }else{
+  1133  0149  294D               	goto	l1361
+  1134  014A                     l1359:	
+  1135                           
+  1136                           ;main.c: 182: UART_puts("==> 2\n");
+  1137  014A  3016               	movlw	(low ((STR_6-__stringbase)| (0+32768)))& (0+255)
+  1138  014B  2508               	fcall	_UART_puts
+  1139                           
+  1140                           ;main.c: 183: break;
+  1141  014C  2959               	goto	l1365
+  1142  014D                     l1361:	
+  1143  014D  3001               	movlw	1
+  1144  014E  1283               	bcf	3,5	;RP0=0, select bank0
+  1145  014F  1303               	bcf	3,6	;RP1=0, select bank0
+  1146  0150  00C0               	movwf	??_CEC_CAPTURE_EVENT
+  1147  0151  0840               	movf	??_CEC_CAPTURE_EVENT,w
+  1148  0152  1683               	bsf	3,5	;RP0=1, select bank1
+  1149  0153  1303               	bcf	3,6	;RP1=0, select bank1
+  1150  0154  07B8               	addwf	CEC_CAPTURE_EVENT@bit_counter^(0+128),f
+  1151  0155  300B               	movlw	11
+  1152  0156  0238               	subwf	CEC_CAPTURE_EVENT@bit_counter^(0+128),w
+  1153  0157  1C03               	skipc
+  1154  0158  28DD               	goto	l1347
+  1155  0159                     l1365:	
+  1156                           
+  1157                           ;main.c: 184: }
+  1158                           ;main.c: 185: }
+  1159                           ;main.c: 186: UART_puts("0x0");
+  1160  0159  302F               	movlw	(low ((STR_7-__stringbase)| (0+32768)))& (0+255)
+  1161  015A  2508               	fcall	_UART_puts
+  1162  015B                     l118:	
+  1163                           ;main.c: 188: { while(!TXIF){} TXREG=HexToASCII[(frame_buffer>>8) & 0xF]; while(!TXIF){}
+      +                           };
+  1164                           
+  1165  015B  1283               	bcf	3,5	;RP0=0, select bank0
+  1166  015C  1303               	bcf	3,6	;RP1=0, select bank0
+  1167  015D  1E0C               	btfss	12,4	;volatile
+  1168  015E  295B               	goto	l118
+  1169  015F  1683               	bsf	3,5	;RP0=1, select bank1
+  1170  0160  1303               	bcf	3,6	;RP1=0, select bank1
+  1171  0161  0837               	movf	(CEC_CAPTURE_EVENT@frame_buffer+1)^(0+128),w
+  1172  0162  390F               	andlw	15
+  1173  0163  3ECF               	addlw	(low (_HexToASCII| 0))& (0+255)
+  1174  0164  0084               	movwf	4
+  1175  0165  1383               	bcf	3,7	;select IRP bank1
+  1176  0166  0800               	movf	0,w
+  1177  0167  1283               	bcf	3,5	;RP0=0, select bank0
+  1178  0168  1303               	bcf	3,6	;RP1=0, select bank0
+  1179  0169  0099               	movwf	25	;volatile
+  1180  016A                     l121:	
+  1181  016A  1E0C               	btfss	12,4	;volatile
+  1182  016B  296A               	goto	l121
+  1183  016C                     l124:	
+  1184                           ;main.c: 189: { while(!TXIF){} TXREG=HexToASCII[(frame_buffer>>4) & 0xF]; while(!TXIF){}
+      +                           };
+  1185                           
+  1186  016C  1E0C               	btfss	12,4	;volatile
+  1187  016D  296C               	goto	l124
+  1188  016E  1683               	bsf	3,5	;RP0=1, select bank1
+  1189  016F  1303               	bcf	3,6	;RP1=0, select bank1
+  1190  0170  0837               	movf	(CEC_CAPTURE_EVENT@frame_buffer+1)^(0+128),w
+  1191  0171  1283               	bcf	3,5	;RP0=0, select bank0
+  1192  0172  1303               	bcf	3,6	;RP1=0, select bank0
+  1193  0173  00C1               	movwf	??_CEC_CAPTURE_EVENT+1
+  1194  0174  1683               	bsf	3,5	;RP0=1, select bank1
+  1195  0175  1303               	bcf	3,6	;RP1=0, select bank1
+  1196  0176  0836               	movf	CEC_CAPTURE_EVENT@frame_buffer^(0+128),w
+  1197  0177  1283               	bcf	3,5	;RP0=0, select bank0
+  1198  0178  1303               	bcf	3,6	;RP1=0, select bank0
+  1199  0179  00C0               	movwf	??_CEC_CAPTURE_EVENT
+  1200  017A  3004               	movlw	4
+  1201  017B                     u1075:	
+  1202  017B  1003               	clrc
+  1203  017C  0CC1               	rrf	??_CEC_CAPTURE_EVENT+1,f
+  1204  017D  0CC0               	rrf	??_CEC_CAPTURE_EVENT,f
+  1205  017E  3EFF               	addlw	-1
+  1206  017F  1D03               	skipz
+  1207  0180  297B               	goto	u1075
+  1208  0181  0840               	movf	??_CEC_CAPTURE_EVENT,w
+  1209  0182  390F               	andlw	15
+  1210  0183  3ECF               	addlw	(low (_HexToASCII| 0))& (0+255)
+  1211  0184  0084               	movwf	4
+  1212  0185  1383               	bcf	3,7	;select IRP bank1
+  1213  0186  0800               	movf	0,w
+  1214  0187  0099               	movwf	25	;volatile
+  1215  0188                     l127:	
+  1216  0188  1E0C               	btfss	12,4	;volatile
+  1217  0189  2988               	goto	l127
+  1218  018A                     l130:	
+  1219                           ;main.c: 190: { while(!TXIF){} TXREG=HexToASCII[frame_buffer & 0xF]; while(!TXIF){} };
+  1220                           
+  1221  018A  1E0C               	btfss	12,4	;volatile
+  1222  018B  298A               	goto	l130
+  1223  018C  1683               	bsf	3,5	;RP0=1, select bank1
+  1224  018D  1303               	bcf	3,6	;RP1=0, select bank1
+  1225  018E  0836               	movf	CEC_CAPTURE_EVENT@frame_buffer^(0+128),w
+  1226  018F  390F               	andlw	15
+  1227  0190  3ECF               	addlw	(low (_HexToASCII| 0))& (0+255)
+  1228  0191  0084               	movwf	4
+  1229  0192  1383               	bcf	3,7	;select IRP bank1
+  1230  0193  0800               	movf	0,w
+  1231  0194  1283               	bcf	3,5	;RP0=0, select bank0
+  1232  0195  1303               	bcf	3,6	;RP1=0, select bank0
+  1233  0196  0099               	movwf	25	;volatile
+  1234  0197                     l133:	
+  1235  0197  1E0C               	btfss	12,4	;volatile
+  1236  0198  2997               	goto	l133
+  1237  0199                     l136:	
+  1238                           ;main.c: 191: { while(!TXIF){} TXREG='\n'; while(!TXIF){} };
+  1239                           
+  1240  0199  1E0C               	btfss	12,4	;volatile
+  1241  019A  2999               	goto	l136
+  1242  019B  300A               	movlw	10
+  1243  019C  0099               	movwf	25	;volatile
+  1244  019D                     l139:	
+  1245  019D  1A0C               	btfsc	12,4	;volatile
+  1246  019E  29A2               	goto	l1377
+  1247  019F  299D               	goto	l139
+  1248  01A0                     l1375:	
+  1249                           ;main.c: 192: }else{
+  1250                           
+  1251                           
+  1252                           ;main.c: 193: UART_puts("==> 2\n");
+  1253  01A0  3016               	movlw	(low ((STR_6-__stringbase)| (0+32768)))& (0+255)
+  1254  01A1  2508               	fcall	_UART_puts
+  1255  01A2                     l1377:	
+  1256                           
+  1257                           ;main.c: 194: }
+  1258                           ;main.c: 198: bit_counter=0;
+  1259  01A2  1683               	bsf	3,5	;RP0=1, select bank1
+  1260  01A3  1303               	bcf	3,6	;RP1=0, select bank1
+  1261  01A4  01B8               	clrf	CEC_CAPTURE_EVENT@bit_counter^(0+128)
+  1262                           
+  1263                           ;main.c: 199: goto LOOP;
+  1264  01A5  2867               	goto	l1273
+  1265  01A6                     __end_of_CEC_CAPTURE_EVENT:	
+  1266                           
+  1267                           	psect	text2
+  1268  0508                     __ptext2:	
+  1269 ;; *************** function _UART_puts *****************
+  1270 ;; Defined at:
+  1271 ;;		line 8 in file "RegConfiguration.c"
+  1272 ;; Parameters:    Size  Location     Type
+  1273 ;;  c               1    wreg     PTR const unsigned char 
+  1274 ;;		 -> STR_10(7), STR_9(4), STR_8(7), STR_7(4), 
+  1275 ;;		 -> STR_6(7), STR_5(7), STR_4(7), STR_3(7), 
+  1276 ;;		 -> STR_2(7), STR_1(7), 
+  1277 ;; Auto vars:     Size  Location     Type
+  1278 ;;  c               1   31[BANK0 ] PTR const unsigned char 
+  1279 ;;		 -> STR_10(7), STR_9(4), STR_8(7), STR_7(4), 
+  1280 ;;		 -> STR_6(7), STR_5(7), STR_4(7), STR_3(7), 
+  1281 ;;		 -> STR_2(7), STR_1(7), 
+  1282 ;; Return value:  Size  Location     Type
+  1283 ;;                  1    wreg      void 
+  1284 ;; Registers used:
+  1285 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath
+  1286 ;; Tracked objects:
+  1287 ;;		On entry : 0/0
+  1288 ;;		On exit  : 0/0
+  1289 ;;		Unchanged: 0/0
+  1290 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1291 ;;      Params:         0       0       0       0
+  1292 ;;      Locals:         0       1       0       0
+  1293 ;;      Temps:          0       1       0       0
+  1294 ;;      Totals:         0       2       0       0
+  1295 ;;Total ram usage:        2 bytes
+  1296 ;; Hardware stack levels used:    1
+  1297 ;; Hardware stack levels required when called:    4
+  1298 ;; This function calls:
+  1299 ;;		Nothing
+  1300 ;; This function is called by:
+  1301 ;;		_CEC_CAPTURE_EVENT
+  1302 ;; This function uses a non-reentrant model
+  1303 ;;
+  1304                           
+  1305                           
+  1306                           ;psect for function _UART_puts
+  1307  0508                     _UART_puts:	
+  1308                           
+  1309                           ;incstack = 0
+  1310                           ; Regs used in _UART_puts: [wreg-fsr0h+status,2+status,0+pclath]
+  1311                           ;UART_puts@c stored from wreg
+  1312  0508  1283               	bcf	3,5	;RP0=0, select bank0
+  1313  0509  1303               	bcf	3,6	;RP1=0, select bank0
+  1314  050A  00BF               	movwf	UART_puts@c
+  1315  050B                     l1227:	
+  1316                           ;RegConfiguration.c: 9: while(*c){
+  1317                           
+  1318  050B  083F               	movf	UART_puts@c,w
+  1319  050C  0084               	movwf	4
+  1320  050D  2418               	fcall	stringdir
+  1321  050E  3A00               	xorlw	0
+  1322  050F  1903               	btfsc	3,2
+  1323  0510  0008               	return
+  1324  0511                     l190:	
+  1325                           ;RegConfiguration.c: 10: { while(!TXIF){} TXREG=*c++; while(!TXIF){} };
+  1326                           
+  1327  0511  1E0C               	btfss	12,4	;volatile
+  1328  0512  2D11               	goto	l190
+  1329  0513  083F               	movf	UART_puts@c,w
+  1330  0514  0084               	movwf	4
+  1331  0515  2418               	fcall	stringdir
+  1332  0516  0099               	movwf	25	;volatile
+  1333  0517  3001               	movlw	1
+  1334  0518  00BE               	movwf	??_UART_puts
+  1335  0519  083E               	movf	??_UART_puts,w
+  1336  051A  07BF               	addwf	UART_puts@c,f
+  1337  051B                     l193:	
+  1338  051B  1A0C               	btfsc	12,4	;volatile
+  1339  051C  2D0B               	goto	l1227
+  1340  051D  2D1B               	goto	l193
+  1341  051E                     __end_of_UART_puts:	
+  1342                           
+  1343                           	psect	text3
+  1344  03C7                     __ptext3:	
+  1345 ;; *************** function _ISR *****************
+  1346 ;; Defined at:
+  1347 ;;		line 5 in file "InterruptControl.c"
+  1348 ;; Parameters:    Size  Location     Type
+  1349 ;;		None
+  1350 ;; Auto vars:     Size  Location     Type
+  1351 ;;  rx              1   12[COMMON] volatile unsigned char 
+  1352 ;; Return value:  Size  Location     Type
+  1353 ;;                  1    wreg      void 
+  1354 ;; Registers used:
+  1355 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+  1356 ;; Tracked objects:
+  1357 ;;		On entry : 0/0
+  1358 ;;		On exit  : 0/0
+  1359 ;;		Unchanged: 0/0
+  1360 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1361 ;;      Params:         0       0       0       0
+  1362 ;;      Locals:         1       0       0       0
+  1363 ;;      Temps:          0       5       0       0
+  1364 ;;      Totals:         1       5       0       0
+  1365 ;;Total ram usage:        6 bytes
+  1366 ;; Hardware stack levels used:    1
+  1367 ;; Hardware stack levels required when called:    3
+  1368 ;; This function calls:
+  1369 ;;		_UART_EVENT
+  1370 ;;		_clear_buffer
+  1371 ;;		i1_UART_puts
+  1372 ;; This function is called by:
+  1373 ;;		Interrupt level 1
+  1374 ;; This function uses a non-reentrant model
+  1375 ;;
+  1376                           
+  1377                           
+  1378                           ;psect for function _ISR
+  1379  03C7                     _ISR:	
+  1380                           
+  1381                           ;InterruptControl.c: 9: if(RCIF){
+  1382  03C7  1E8C               	btfss	12,5	;volatile
+  1383  03C8  2BF7               	goto	i1l172
+  1384                           
+  1385                           ;InterruptControl.c: 10: volatile unsigned char rx = RCREG;
+  1386  03C9  081A               	movf	26,w	;volatile
+  1387  03CA  00B9               	movwf	??_ISR
+  1388  03CB  0839               	movf	??_ISR,w
+  1389  03CC  00FC               	movwf	ISR@rx	;volatile
+  1390                           
+  1391                           ;InterruptControl.c: 12: if(rx == 'R'){asm("goto 0x00");}
+  1392  03CD  3052               	movlw	82
+  1393  03CE  067C               	xorwf	ISR@rx,w	;volatile
+  1394  03CF  1903               	btfsc	3,2
+  1395  03D0  2800               	goto	0	;# 
+  1396                           
+  1397                           ;InterruptControl.c: 14: if(rx == 'I'){
+  1398  03D1  3049               	movlw	73
+  1399  03D2  067C               	xorwf	ISR@rx,w	;volatile
+  1400  03D3  1D03               	btfss	3,2
+  1401  03D4  2BDD               	goto	i1l1567
+  1402                           
+  1403                           ;InterruptControl.c: 15: clear_buffer(&CEC_OUTPUT_BUFFER);
+  1404  03D5  3020               	movlw	(low (_CEC_OUTPUT_BUFFER| (0+256)))& (0+255)
+  1405  03D6  2450               	fcall	_clear_buffer
+  1406                           
+  1407                           ;InterruptControl.c: 16: uart_buffer.length=0;
+  1408  03D7  1283               	bcf	3,5	;RP0=0, select bank0
+  1409  03D8  1303               	bcf	3,6	;RP1=0, select bank0
+  1410  03D9  01CE               	clrf	_uart_buffer+4	;volatile
+  1411                           
+  1412                           ;InterruptControl.c: 17: UART_puts("OK\n");
+  1413  03DA  302B               	movlw	(low ((STR_9-__stringbase)| (0+32768)))& (0+255)
+  1414  03DB  251E               	fcall	i1_UART_puts
+  1415                           
+  1416                           ;InterruptControl.c: 18: return;
+  1417  03DC  2C0B               	goto	i1l175
+  1418  03DD                     i1l1567:	
+  1419                           
+  1420                           ;InterruptControl.c: 19: }
+  1421                           ;InterruptControl.c: 20: if(uart_buffer.length<4){
+  1422  03DD  3004               	movlw	4
+  1423  03DE  1283               	bcf	3,5	;RP0=0, select bank0
+  1424  03DF  1303               	bcf	3,6	;RP1=0, select bank0
+  1425  03E0  024E               	subwf	_uart_buffer+4,w	;volatile
+  1426  03E1  1803               	skipnc
+  1427  03E2  2BF1               	goto	i1l1575
+  1428                           
+  1429                           ;InterruptControl.c: 21: uart_buffer.data[uart_buffer.length] = rx;
+  1430  03E3  087C               	movf	ISR@rx,w	;volatile
+  1431  03E4  00B9               	movwf	??_ISR
+  1432  03E5  084E               	movf	_uart_buffer+4,w	;volatile
+  1433  03E6  3E4A               	addlw	(low (_uart_buffer| 0))& (0+255)
+  1434  03E7  0084               	movwf	4
+  1435  03E8  0839               	movf	??_ISR,w
+  1436  03E9  1383               	bcf	3,7	;select IRP bank0
+  1437  03EA  0080               	movwf	0
+  1438                           
+  1439                           ;InterruptControl.c: 22: uart_buffer.length++;
+  1440  03EB  3001               	movlw	1
+  1441  03EC  00B9               	movwf	??_ISR
+  1442  03ED  0839               	movf	??_ISR,w
+  1443  03EE  07CE               	addwf	_uart_buffer+4,f	;volatile
+  1444                           
+  1445                           ;InterruptControl.c: 23: UART_EVENT();
+  1446  03EF  21A6               	fcall	_UART_EVENT
+  1447                           
+  1448                           ;InterruptControl.c: 24: }else{
+  1449  03F0  2C0B               	goto	i1l175
+  1450  03F1                     i1l1575:	
+  1451                           
+  1452                           ;InterruptControl.c: 25: UART_puts("==> 3\n");
+  1453  03F1  3001               	movlw	(low ((STR_10-__stringbase)| (0+32768)))& (0+255)
+  1454  03F2  251E               	fcall	i1_UART_puts
+  1455                           
+  1456                           ;InterruptControl.c: 26: uart_buffer.length=0;
+  1457  03F3  1283               	bcf	3,5	;RP0=0, select bank0
+  1458  03F4  1303               	bcf	3,6	;RP1=0, select bank0
+  1459  03F5  01CE               	clrf	_uart_buffer+4	;volatile
+  1460                           
+  1461                           ;InterruptControl.c: 27: }
+  1462                           ;InterruptControl.c: 28: return;
+  1463  03F6  2C0B               	goto	i1l175
+  1464  03F7                     i1l172:	
+  1465                           
+  1466                           ;InterruptControl.c: 29: }
+  1467                           ;InterruptControl.c: 33: if(TMR1IF){
+  1468  03F7  1C0C               	btfss	12,0	;volatile
+  1469  03F8  2BFB               	goto	i1l178
+  1470                           
+  1471                           ;InterruptControl.c: 34: TMR1IF = 0;
+  1472  03F9  100C               	bcf	12,0	;volatile
+  1473  03FA  2800               	goto	0	;# 
+  1474  03FB                     i1l178:	
+  1475                           
+  1476                           ;InterruptControl.c: 36: }
+  1477                           ;InterruptControl.c: 40: if(CCP1IF){
+  1478  03FB  1283               	bcf	3,5	;RP0=0, select bank0
+  1479  03FC  1303               	bcf	3,6	;RP1=0, select bank0
+  1480  03FD  1D0C               	btfss	12,2	;volatile
+  1481  03FE  2C0B               	goto	i1l175
+  1482                           
+  1483                           ;InterruptControl.c: 41: CCP1IF = 0;
+  1484  03FF  110C               	bcf	12,2	;volatile
+  1485                           
+  1486                           ;InterruptControl.c: 42: CEC_IF = 1;
+  1487  0400  3001               	movlw	1
+  1488  0401  00B9               	movwf	??_ISR
+  1489  0402  0839               	movf	??_ISR,w
+  1490  0403  1683               	bsf	3,5	;RP0=1, select bank1
+  1491  0404  1303               	bcf	3,6	;RP1=0, select bank1
+  1492  0405  00DF               	movwf	_CEC_IF^(0+128)	;volatile
+  1493                           
+  1494                           ;InterruptControl.c: 43: PORTA = 1;
+  1495  0406  3001               	movlw	1
+  1496  0407  1283               	bcf	3,5	;RP0=0, select bank0
+  1497  0408  1303               	bcf	3,6	;RP1=0, select bank0
+  1498  0409  0085               	movwf	5	;volatile
+  1499                           
+  1500                           ;InterruptControl.c: 44: PORTA = 0;
+  1501  040A  0185               	clrf	5	;volatile
+  1502  040B                     i1l175:	
+  1503                           ;InterruptControl.c: 45: }
+  1504                           ;InterruptControl.c: 46: return;
+  1505                           
+  1506  040B  1283               	bcf	3,5	;RP0=0, select bank0
+  1507  040C  1303               	bcf	3,6	;RP1=0, select bank0
+  1508  040D  083D               	movf	??_ISR+4,w
+  1509  040E  00FF               	movwf	127
+  1510  040F  083C               	movf	??_ISR+3,w
+  1511  0410  008A               	movwf	10
+  1512  0411  083B               	movf	??_ISR+2,w
+  1513  0412  0084               	movwf	4
+  1514  0413  0E3A               	swapf	(??_ISR+1)^0,w
+  1515  0414  0083               	movwf	3
+  1516  0415  0EFE               	swapf	126,f
+  1517  0416  0E7E               	swapf	126,w
+  1518  0417  0009               	retfie
+  1519  0418                     __end_of_ISR:	
+  1520                           
+  1521                           	psect	intentry
+  1522  0004                     __pintentry:	
+  1523                           ;incstack = 0
+  1524                           ; Regs used in _ISR: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+  1525                           
+  1526  0004                     interrupt_function:	
+  1527  007E                     saved_w	set	btemp
+  1528  0004  00FE               	movwf	btemp
+  1529  0005  0E03               	swapf	3,w
+  1530  0006  1283               	bcf	3,5	;RP0=0, select bank0
+  1531  0007  1303               	bcf	3,6	;RP1=0, select bank0
+  1532  0008  00BA               	movwf	??_ISR+1
+  1533  0009  0804               	movf	4,w
+  1534  000A  00BB               	movwf	??_ISR+2
+  1535  000B  080A               	movf	10,w
+  1536  000C  00BC               	movwf	??_ISR+3
+  1537  000D  087F               	movf	btemp+1,w
+  1538  000E  00BD               	movwf	??_ISR+4
+  1539  000F  2BC7               	ljmp	_ISR
+  1540                           
+  1541                           	psect	text4
+  1542  01A6                     __ptext4:	
+  1543 ;; *************** function _UART_EVENT *****************
+  1544 ;; Defined at:
+  1545 ;;		line 68 in file "main.c"
+  1546 ;; Parameters:    Size  Location     Type
+  1547 ;;		None
+  1548 ;; Auto vars:     Size  Location     Type
+  1549 ;;  i               1   20[BANK0 ] unsigned char 
+  1550 ;;  i               1   22[BANK0 ] unsigned char 
+  1551 ;;  i               1   21[BANK0 ] unsigned char 
+  1552 ;;  i               1   19[BANK0 ] unsigned char 
+  1553 ;;  i               1   23[BANK0 ] unsigned char 
+  1554 ;;  i               1   24[BANK0 ] unsigned char 
+  1555 ;;  data            6   13[BANK0 ] unsigned int [3]
+  1556 ;; Return value:  Size  Location     Type
+  1557 ;;                  1    wreg      void 
+  1558 ;; Registers used:
+  1559 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+  1560 ;; Tracked objects:
+  1561 ;;		On entry : 0/0
+  1562 ;;		On exit  : 0/0
+  1563 ;;		Unchanged: 0/0
+  1564 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1565 ;;      Params:         0       0       0       0
+  1566 ;;      Locals:         0      12       0       0
+  1567 ;;      Temps:          0       8       0       0
+  1568 ;;      Totals:         0      20       0       0
+  1569 ;;Total ram usage:       20 bytes
+  1570 ;; Hardware stack levels used:    1
+  1571 ;; Hardware stack levels required when called:    2
+  1572 ;; This function calls:
+  1573 ;;		_CEC_PUSH_BUFFER
+  1574 ;;		_CEC_SEND
+  1575 ;;		_clear_buffer
+  1576 ;;		i1_UART_puts
+  1577 ;; This function is called by:
+  1578 ;;		_ISR
+  1579 ;; This function uses a non-reentrant model
+  1580 ;;
+  1581                           
+  1582                           
+  1583                           ;psect for function _UART_EVENT
+  1584  01A6                     _UART_EVENT:	
+  1585                           
+  1586                           ;main.c: 69: {PIE1bits.CCP1IE=0;PIR1bits.CCP1IF=0;CCP1CON=0;{TMR1ON=0;};};
+  1587                           
+  1588                           ;incstack = 0
+  1589                           ; Regs used in _UART_EVENT: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+  1590  01A6  1683               	bsf	3,5	;RP0=1, select bank1
+  1591  01A7  1303               	bcf	3,6	;RP1=0, select bank1
+  1592  01A8  110C               	bcf	12,2	;volatile
+  1593  01A9  1283               	bcf	3,5	;RP0=0, select bank0
+  1594  01AA  1303               	bcf	3,6	;RP1=0, select bank0
+  1595  01AB  110C               	bcf	12,2	;volatile
+  1596  01AC  0197               	clrf	23	;volatile
+  1597  01AD  1010               	bcf	16,0	;volatile
+  1598                           
+  1599                           ;main.c: 70: if(uart_buffer.length<4){
+  1600  01AE  3004               	movlw	4
+  1601  01AF  024E               	subwf	_uart_buffer+4,w	;volatile
+  1602  01B0  1C03               	btfss	3,0
+  1603  01B1  0008               	return
+  1604                           
+  1605                           ;main.c: 72: }
+  1606                           ;main.c: 73: unsigned int data[3] = {0,0,0};
+  1607                           
+  1608                           ;main.c: 71: return;
+  1609  01B2  302D               	movlw	UART_EVENT@data& (0+255)
+  1610  01B3  0084               	movwf	4
+  1611  01B4  0844               	movf	UART_EVENT@F665,w
+  1612  01B5  1383               	bcf	3,7	;select IRP bank0
+  1613  01B6  0080               	movwf	0
+  1614  01B7  0A84               	incf	4,f
+  1615  01B8  0845               	movf	UART_EVENT@F665+1,w
+  1616  01B9  0080               	movwf	0
+  1617  01BA  0A84               	incf	4,f
+  1618  01BB  0846               	movf	UART_EVENT@F665+2,w
+  1619  01BC  0080               	movwf	0
+  1620  01BD  0A84               	incf	4,f
+  1621  01BE  0847               	movf	UART_EVENT@F665+3,w
+  1622  01BF  0080               	movwf	0
+  1623  01C0  0A84               	incf	4,f
+  1624  01C1  0848               	movf	UART_EVENT@F665+4,w
+  1625  01C2  0080               	movwf	0
+  1626  01C3  0A84               	incf	4,f
+  1627  01C4  0849               	movf	UART_EVENT@F665+5,w
+  1628  01C5  0080               	movwf	0
+  1629                           
+  1630                           ;main.c: 74: for(unsigned char i=0;i<3;i++){
+  1631  01C6  01B8               	clrf	UART_EVENT@i
+  1632  01C7  3003               	movlw	3
+  1633  01C8  0238               	subwf	UART_EVENT@i,w
+  1634  01C9  1803               	btfsc	3,0
+  1635  01CA  29F7               	goto	i1l1407
+  1636  01CB                     i1l1397:	
+  1637                           
+  1638                           ;main.c: 75: if(uart_buffer.data[i]>'9'){
+  1639  01CB  0838               	movf	UART_EVENT@i,w
+  1640  01CC  3E4A               	addlw	(low (_uart_buffer| 0))& (0+255)
+  1641  01CD  0084               	movwf	4
+  1642  01CE  303A               	movlw	58
+  1643  01CF  0200               	subwf	0,w
+  1644  01D0  1C03               	skipc
+  1645  01D1  29DB               	goto	i1l1401
+  1646                           
+  1647                           ;main.c: 76: data[i] = (uart_buffer.data[i]+9) & 0xF;
+  1648  01D2  0838               	movf	UART_EVENT@i,w
+  1649  01D3  3E4A               	addlw	(low (_uart_buffer| 0))& (0+255)
+  1650  01D4  0084               	movwf	4
+  1651  01D5  0800               	movf	0,w
+  1652  01D6  3E09               	addlw	9
+  1653  01D7  390F               	andlw	15
+  1654  01D8  00A5               	movwf	??_UART_EVENT
+  1655  01D9  01A6               	clrf	??_UART_EVENT+1
+  1656  01DA  29E5               	goto	L2
+  1657  01DB                     i1l1401:	
+  1658                           ;main.c: 77: }else{
+  1659                           
+  1660                           
+  1661                           ;main.c: 78: data[i] = uart_buffer.data[i]-'0';
+  1662  01DB  0838               	movf	UART_EVENT@i,w
+  1663  01DC  3E4A               	addlw	(low (_uart_buffer| 0))& (0+255)
+  1664  01DD  0084               	movwf	4
+  1665  01DE  0800               	movf	0,w
+  1666  01DF  3ED0               	addlw	208
+  1667  01E0  00A5               	movwf	??_UART_EVENT
+  1668  01E1  30FF               	movlw	255
+  1669  01E2  1803               	skipnc
+  1670  01E3  3000               	movlw	0
+  1671  01E4  00A6               	movwf	??_UART_EVENT+1
+  1672  01E5                     L2:	
+  1673  01E5  0838               	movf	UART_EVENT@i,w
+  1674  01E6  00A7               	movwf	??_UART_EVENT+2
+  1675  01E7  0727               	addwf	??_UART_EVENT+2,w
+  1676  01E8  3E2D               	addlw	(low (UART_EVENT@data| 0))& (0+255)
+  1677  01E9  0084               	movwf	4
+  1678  01EA  0825               	movf	??_UART_EVENT,w
+  1679  01EB  0080               	movwf	0
+  1680  01EC  0A84               	incf	4,f
+  1681  01ED  0826               	movf	??_UART_EVENT+1,w
+  1682  01EE  0080               	movwf	0
+  1683  01EF  3001               	movlw	1
+  1684  01F0  00A5               	movwf	??_UART_EVENT
+  1685  01F1  0825               	movf	??_UART_EVENT,w
+  1686  01F2  07B8               	addwf	UART_EVENT@i,f
+  1687  01F3  3003               	movlw	3
+  1688  01F4  0238               	subwf	UART_EVENT@i,w
+  1689  01F5  1C03               	skipc
+  1690  01F6  29CB               	goto	i1l1397
+  1691  01F7                     i1l1407:	
+  1692                           
+  1693                           ;main.c: 79: }
+  1694                           ;main.c: 80: }
+  1695                           ;main.c: 81: if(uart_buffer.data[3]-'0'){
+  1696  01F7  084D               	movf	_uart_buffer+3,w	;volatile
+  1697  01F8  3ED0               	addlw	208
+  1698  01F9  00A5               	movwf	??_UART_EVENT
+  1699  01FA  30FF               	movlw	255
+  1700  01FB  1803               	skipnc
+  1701  01FC  3000               	movlw	0
+  1702  01FD  00A6               	movwf	??_UART_EVENT+1
+  1703  01FE  0825               	movf	??_UART_EVENT,w
+  1704  01FF  0426               	iorwf	??_UART_EVENT+1,w
+  1705  0200  1903               	btfsc	3,2
+  1706  0201  2A5F               	goto	i1l1447
+  1707                           
+  1708                           ;main.c: 85: UART_puts("==> 4\n");
+  1709  0202  301D               	movlw	(low ((STR_1-__stringbase)| (0+32768)))& (0+255)
+  1710  0203  251E               	fcall	i1_UART_puts
+  1711                           
+  1712                           ;main.c: 86: for(unsigned char i=0;i<4;i++){
+  1713  0204  1283               	bcf	3,5	;RP0=0, select bank0
+  1714  0205  1303               	bcf	3,6	;RP1=0, select bank0
+  1715  0206  01B3               	clrf	UART_EVENT@i_223
+  1716  0207  3004               	movlw	4
+  1717  0208  0233               	subwf	UART_EVENT@i_223,w
+  1718  0209  1803               	btfsc	3,0
+  1719  020A  2A19               	goto	i1l1425
+  1720  020B                     i1l1417:	
+  1721                           
+  1722                           ;main.c: 87: uart_buffer.data[i]=0;
+  1723  020B  0833               	movf	UART_EVENT@i_223,w
+  1724  020C  3E4A               	addlw	(low (_uart_buffer| 0))& (0+255)
+  1725  020D  0084               	movwf	4
+  1726  020E  1383               	bcf	3,7	;select IRP bank0
+  1727  020F  0180               	clrf	0
+  1728                           
+  1729                           ;main.c: 88: uart_buffer.length=0;
+  1730  0210  01CE               	clrf	_uart_buffer+4	;volatile
+  1731  0211  3001               	movlw	1
+  1732  0212  00A5               	movwf	??_UART_EVENT
+  1733  0213  0825               	movf	??_UART_EVENT,w
+  1734  0214  07B3               	addwf	UART_EVENT@i_223,f
+  1735  0215  3004               	movlw	4
+  1736  0216  0233               	subwf	UART_EVENT@i_223,w
+  1737  0217  1C03               	skipc
+  1738  0218  2A0B               	goto	i1l1417
+  1739  0219                     i1l1425:	
+  1740                           
+  1741                           ;main.c: 89: }
+  1742                           ;main.c: 90: if(!CEC_PUSH_BUFFER( ((data[0]<<8)&0x3FF) +(data[1]<<4)+data[2])){
+  1743  0219  3002               	movlw	2
+  1744  021A  3E2D               	addlw	(low (UART_EVENT@data| 0))& (0+255)
+  1745  021B  0084               	movwf	4
+  1746  021C  1383               	bcf	3,7	;select IRP bank0
+  1747  021D  0800               	movf	0,w
+  1748  021E  00A5               	movwf	??_UART_EVENT
+  1749  021F  0A84               	incf	4,f
+  1750  0220  0800               	movf	0,w
+  1751  0221  00A6               	movwf	??_UART_EVENT+1
+  1752  0222  0EA5               	swapf	??_UART_EVENT,f
+  1753  0223  0EA6               	swapf	??_UART_EVENT+1,f
+  1754  0224  30F0               	movlw	240
+  1755  0225  05A6               	andwf	??_UART_EVENT+1,f
+  1756  0226  0825               	movf	??_UART_EVENT,w
+  1757  0227  390F               	andlw	15
+  1758  0228  04A6               	iorwf	??_UART_EVENT+1,f
+  1759  0229  30F0               	movlw	240
+  1760  022A  05A5               	andwf	??_UART_EVENT,f
+  1761  022B  082D               	movf	UART_EVENT@data,w
+  1762  022C  00A8               	movwf	??_UART_EVENT+3
+  1763  022D  01A7               	clrf	??_UART_EVENT+2
+  1764  022E  30FF               	movlw	255
+  1765  022F  0527               	andwf	??_UART_EVENT+2,w
+  1766  0230  00A9               	movwf	??_UART_EVENT+4
+  1767  0231  3003               	movlw	3
+  1768  0232  0528               	andwf	??_UART_EVENT+3,w
+  1769  0233  00AA               	movwf	??_UART_EVENT+5
+  1770  0234  0825               	movf	??_UART_EVENT,w
+  1771  0235  0729               	addwf	??_UART_EVENT+4,w
+  1772  0236  00AB               	movwf	??_UART_EVENT+6
+  1773  0237  0826               	movf	??_UART_EVENT+1,w
+  1774  0238  1803               	skipnc
+  1775  0239  0A26               	incf	??_UART_EVENT+1,w
+  1776  023A  072A               	addwf	??_UART_EVENT+5,w
+  1777  023B  00AC               	movwf	??_UART_EVENT+7
+  1778  023C  0831               	movf	UART_EVENT@data+4,w
+  1779  023D  072B               	addwf	??_UART_EVENT+6,w
+  1780  023E  00F7               	movwf	CEC_PUSH_BUFFER@frame
+  1781  023F  0832               	movf	UART_EVENT@data+5,w
+  1782  0240  1803               	skipnc
+  1783  0241  0A32               	incf	UART_EVENT@data+5,w
+  1784  0242  072C               	addwf	??_UART_EVENT+7,w
+  1785  0243  00F8               	movwf	CEC_PUSH_BUFFER@frame+1
+  1786  0244  2481               	fcall	_CEC_PUSH_BUFFER
+  1787  0245  3A00               	xorlw	0
+  1788  0246  1D03               	skipz
+  1789  0247  0008               	return
+  1790                           
+  1791                           ;main.c: 91: UART_puts("==> 5\n");
+  1792  0248  3024               	movlw	(low ((STR_2-__stringbase)| (0+32768)))& (0+255)
+  1793  0249  251E               	fcall	i1_UART_puts
+  1794                           
+  1795                           ;main.c: 92: clear_buffer(&CEC_OUTPUT_BUFFER);
+  1796  024A  3020               	movlw	(low (_CEC_OUTPUT_BUFFER| (0+256)))& (0+255)
+  1797  024B  2450               	fcall	_clear_buffer
+  1798                           
+  1799                           ;main.c: 93: uart_buffer.length=0;
+  1800  024C  1283               	bcf	3,5	;RP0=0, select bank0
+  1801  024D  1303               	bcf	3,6	;RP1=0, select bank0
+  1802  024E  01CE               	clrf	_uart_buffer+4	;volatile
+  1803                           
+  1804                           ;main.c: 94: for(unsigned char i=0;i<4;i++){
+  1805  024F  01B4               	clrf	UART_EVENT@i_225
+  1806  0250                     L3:	
+  1807  0250  3004               	movlw	4
+  1808  0251  0234               	subwf	UART_EVENT@i_225,w
+  1809  0252  1803               	btfsc	3,0
+  1810  0253  0008               	return
+  1811                           
+  1812                           ;main.c: 95: uart_buffer.data[i]=0;
+  1813  0254  0834               	movf	UART_EVENT@i_225,w
+  1814  0255  3E4A               	addlw	(low (_uart_buffer| 0))& (0+255)
+  1815  0256  0084               	movwf	4
+  1816  0257  1383               	bcf	3,7	;select IRP bank0
+  1817  0258  0180               	clrf	0
+  1818                           
+  1819                           ;main.c: 96: uart_buffer.length=0;
+  1820  0259  01CE               	clrf	_uart_buffer+4	;volatile
+  1821  025A  3001               	movlw	1
+  1822  025B  00A5               	movwf	??_UART_EVENT
+  1823  025C  0825               	movf	??_UART_EVENT,w
+  1824  025D  07B4               	addwf	UART_EVENT@i_225,f
+  1825  025E  2A50               	goto	L3
+  1826  025F                     i1l1447:	
+  1827                           ;main.c: 99: }
+  1828                           ;main.c: 100: return;
+  1829                           
+  1830                           ;main.c: 97: }
+  1831                           ;main.c: 98: return;
+  1832                           
+  1833                           
+  1834                           ;main.c: 101: }
+  1835                           ;main.c: 106: data[0] = (data[0]<<8) & 0x3FF;
+  1836  025F  082D               	movf	UART_EVENT@data,w
+  1837  0260  00A6               	movwf	??_UART_EVENT+1
+  1838  0261  01A5               	clrf	??_UART_EVENT
+  1839  0262  30FF               	movlw	255
+  1840  0263  0525               	andwf	??_UART_EVENT,w
+  1841  0264  00AD               	movwf	UART_EVENT@data
+  1842  0265  3003               	movlw	3
+  1843  0266  0526               	andwf	??_UART_EVENT+1,w
+  1844  0267  00AE               	movwf	UART_EVENT@data+1
+  1845                           
+  1846                           ;main.c: 107: data[0] += (data[1]<<4) & 0xF0;
+  1847  0268  3002               	movlw	2
+  1848  0269  3E2D               	addlw	(low (UART_EVENT@data| 0))& (0+255)
+  1849  026A  0084               	movwf	4
+  1850  026B  0800               	movf	0,w
+  1851  026C  00A5               	movwf	??_UART_EVENT
+  1852  026D  0A84               	incf	4,f
+  1853  026E  0800               	movf	0,w
+  1854  026F  00A6               	movwf	??_UART_EVENT+1
+  1855  0270  0EA5               	swapf	??_UART_EVENT,f
+  1856  0271  0EA6               	swapf	??_UART_EVENT+1,f
+  1857  0272  30F0               	movlw	240
+  1858  0273  05A6               	andwf	??_UART_EVENT+1,f
+  1859  0274  0825               	movf	??_UART_EVENT,w
+  1860  0275  390F               	andlw	15
+  1861  0276  04A6               	iorwf	??_UART_EVENT+1,f
+  1862  0277  30F0               	movlw	240
+  1863  0278  05A5               	andwf	??_UART_EVENT,f
+  1864  0279  30F0               	movlw	240
+  1865  027A  0525               	andwf	??_UART_EVENT,w
+  1866  027B  00A7               	movwf	??_UART_EVENT+2
+  1867  027C  3000               	movlw	0
+  1868  027D  0526               	andwf	??_UART_EVENT+1,w
+  1869  027E  00A8               	movwf	??_UART_EVENT+3
+  1870  027F  0827               	movf	??_UART_EVENT+2,w
+  1871  0280  07AD               	addwf	UART_EVENT@data,f
+  1872  0281  1803               	skipnc
+  1873  0282  0AAE               	incf	UART_EVENT@data+1,f
+  1874  0283  0828               	movf	??_UART_EVENT+3,w
+  1875  0284  07AE               	addwf	UART_EVENT@data+1,f
+  1876                           
+  1877                           ;main.c: 108: data[0] += (data[2]) & 0xF;
+  1878  0285  300F               	movlw	15
+  1879  0286  0531               	andwf	UART_EVENT@data+4,w
+  1880  0287  00A5               	movwf	??_UART_EVENT
+  1881  0288  3000               	movlw	0
+  1882  0289  0532               	andwf	UART_EVENT@data+5,w
+  1883  028A  00A6               	movwf	??_UART_EVENT+1
+  1884  028B  0825               	movf	??_UART_EVENT,w
+  1885  028C  07AD               	addwf	UART_EVENT@data,f
+  1886  028D  1803               	skipnc
+  1887  028E  0AAE               	incf	UART_EVENT@data+1,f
+  1888  028F  0826               	movf	??_UART_EVENT+1,w
+  1889  0290  07AE               	addwf	UART_EVENT@data+1,f
+  1890                           
+  1891                           ;main.c: 109: if(!CEC_PUSH_BUFFER(data[0])){
+  1892  0291  082E               	movf	UART_EVENT@data+1,w
+  1893  0292  00F8               	movwf	CEC_PUSH_BUFFER@frame+1
+  1894  0293  082D               	movf	UART_EVENT@data,w
+  1895  0294  00F7               	movwf	CEC_PUSH_BUFFER@frame
+  1896  0295  2481               	fcall	_CEC_PUSH_BUFFER
+  1897  0296  3A00               	xorlw	0
+  1898  0297  1D03               	skipz
+  1899  0298  2AB0               	goto	i1l1475
+  1900                           
+  1901                           ;main.c: 110: UART_puts("==> 5\n");
+  1902  0299  3024               	movlw	(low ((STR_2-__stringbase)| (0+32768)))& (0+255)
+  1903  029A  251E               	fcall	i1_UART_puts
+  1904                           
+  1905                           ;main.c: 111: clear_buffer(&CEC_OUTPUT_BUFFER);
+  1906  029B  3020               	movlw	(low (_CEC_OUTPUT_BUFFER| (0+256)))& (0+255)
+  1907  029C  2450               	fcall	_clear_buffer
+  1908                           
+  1909                           ;main.c: 112: uart_buffer.length=0;
+  1910  029D  1283               	bcf	3,5	;RP0=0, select bank0
+  1911  029E  1303               	bcf	3,6	;RP1=0, select bank0
+  1912  029F  01CE               	clrf	_uart_buffer+4	;volatile
+  1913                           
+  1914                           ;main.c: 113: for(unsigned char i=0;i<4;i++){
+  1915  02A0  01B5               	clrf	UART_EVENT@i_227
+  1916  02A1                     L4:	
+  1917  02A1  3004               	movlw	4
+  1918  02A2  0235               	subwf	UART_EVENT@i_227,w
+  1919  02A3  1803               	btfsc	3,0
+  1920  02A4  0008               	return
+  1921                           
+  1922                           ;main.c: 114: uart_buffer.data[i]=0;
+  1923  02A5  0835               	movf	UART_EVENT@i_227,w
+  1924  02A6  3E4A               	addlw	(low (_uart_buffer| 0))& (0+255)
+  1925  02A7  0084               	movwf	4
+  1926  02A8  1383               	bcf	3,7	;select IRP bank0
+  1927  02A9  0180               	clrf	0
+  1928                           
+  1929                           ;main.c: 115: uart_buffer.length=0;
+  1930  02AA  01CE               	clrf	_uart_buffer+4	;volatile
+  1931  02AB  3001               	movlw	1
+  1932  02AC  00A5               	movwf	??_UART_EVENT
+  1933  02AD  0825               	movf	??_UART_EVENT,w
+  1934  02AE  07B5               	addwf	UART_EVENT@i_227,f
+  1935  02AF  2AA1               	goto	L4
+  1936  02B0                     i1l1475:	
+  1937                           ;main.c: 116: }
+  1938                           ;main.c: 117: return;
+  1939                           
+  1940                           
+  1941                           ;main.c: 118: }
+  1942                           ;main.c: 120: if(!CEC_SEND()){
+  1943  02B0  255A               	fcall	_CEC_SEND
+  1944  02B1  3A00               	xorlw	0
+  1945  02B2  1D03               	skipz
+  1946  02B3  2ACE               	goto	i1l1499
+  1947                           
+  1948                           ;main.c: 121: SPEN=1;
+  1949  02B4  1283               	bcf	3,5	;RP0=0, select bank0
+  1950  02B5  1303               	bcf	3,6	;RP1=0, select bank0
+  1951  02B6  1798               	bsf	24,7	;volatile
+  1952                           
+  1953                           ;main.c: 122: UART_puts("==> 1\n");
+  1954  02B7  300F               	movlw	(low ((STR_4-__stringbase)| (0+32768)))& (0+255)
+  1955  02B8  251E               	fcall	i1_UART_puts
+  1956                           
+  1957                           ;main.c: 123: clear_buffer(&CEC_OUTPUT_BUFFER);
+  1958  02B9  3020               	movlw	(low (_CEC_OUTPUT_BUFFER| (0+256)))& (0+255)
+  1959  02BA  2450               	fcall	_clear_buffer
+  1960                           
+  1961                           ;main.c: 124: uart_buffer.length=0;
+  1962  02BB  1283               	bcf	3,5	;RP0=0, select bank0
+  1963  02BC  1303               	bcf	3,6	;RP1=0, select bank0
+  1964  02BD  01CE               	clrf	_uart_buffer+4	;volatile
+  1965                           
+  1966                           ;main.c: 125: for(unsigned char i=0;i<4;i++){
+  1967  02BE  01B6               	clrf	UART_EVENT@i_229
+  1968  02BF                     L5:	
+  1969  02BF  3004               	movlw	4
+  1970  02C0  0236               	subwf	UART_EVENT@i_229,w
+  1971  02C1  1803               	btfsc	3,0
+  1972  02C2  0008               	return
+  1973                           
+  1974                           ;main.c: 126: uart_buffer.data[i]=0;
+  1975  02C3  0836               	movf	UART_EVENT@i_229,w
+  1976  02C4  3E4A               	addlw	(low (_uart_buffer| 0))& (0+255)
+  1977  02C5  0084               	movwf	4
+  1978  02C6  1383               	bcf	3,7	;select IRP bank0
+  1979  02C7  0180               	clrf	0
+  1980                           
+  1981                           ;main.c: 127: uart_buffer.length=0;
+  1982  02C8  01CE               	clrf	_uart_buffer+4	;volatile
+  1983  02C9  3001               	movlw	1
+  1984  02CA  00A5               	movwf	??_UART_EVENT
+  1985  02CB  0825               	movf	??_UART_EVENT,w
+  1986  02CC  07B6               	addwf	UART_EVENT@i_229,f
+  1987  02CD  2ABF               	goto	L5
+  1988  02CE                     i1l1499:	
+  1989                           ;main.c: 128: }
+  1990                           ;main.c: 129: return;
+  1991                           
+  1992                           
+  1993                           ;main.c: 130: }
+  1994                           ;main.c: 132: clear_buffer(&CEC_OUTPUT_BUFFER);
+  1995  02CE  3020               	movlw	(low (_CEC_OUTPUT_BUFFER| (0+256)))& (0+255)
+  1996  02CF  2450               	fcall	_clear_buffer
+  1997                           
+  1998                           ;main.c: 133: uart_buffer.length=0;
+  1999  02D0  1283               	bcf	3,5	;RP0=0, select bank0
+  2000  02D1  1303               	bcf	3,6	;RP1=0, select bank0
+  2001  02D2  01CE               	clrf	_uart_buffer+4	;volatile
+  2002                           
+  2003                           ;main.c: 134: for(unsigned char i=0;i<4;i++){
+  2004  02D3  01B7               	clrf	UART_EVENT@i_230
+  2005  02D4  3004               	movlw	4
+  2006  02D5  0237               	subwf	UART_EVENT@i_230,w
+  2007  02D6  1803               	btfsc	3,0
+  2008  02D7  2AE6               	goto	i1l1517
+  2009  02D8                     i1l1509:	
+  2010                           
+  2011                           ;main.c: 135: uart_buffer.data[i]=0;
+  2012  02D8  0837               	movf	UART_EVENT@i_230,w
+  2013  02D9  3E4A               	addlw	(low (_uart_buffer| 0))& (0+255)
+  2014  02DA  0084               	movwf	4
+  2015  02DB  1383               	bcf	3,7	;select IRP bank0
+  2016  02DC  0180               	clrf	0
+  2017                           
+  2018                           ;main.c: 136: uart_buffer.length=0;
+  2019  02DD  01CE               	clrf	_uart_buffer+4	;volatile
+  2020  02DE  3001               	movlw	1
+  2021  02DF  00A5               	movwf	??_UART_EVENT
+  2022  02E0  0825               	movf	??_UART_EVENT,w
+  2023  02E1  07B7               	addwf	UART_EVENT@i_230,f
+  2024  02E2  3004               	movlw	4
+  2025  02E3  0237               	subwf	UART_EVENT@i_230,w
+  2026  02E4  1C03               	skipc
+  2027  02E5  2AD8               	goto	i1l1509
+  2028  02E6                     i1l1517:	
+  2029                           
+  2030                           ;main.c: 137: }
+  2031                           ;main.c: 138: UART_puts("==> 0\n");
+  2032  02E6  3008               	movlw	(low ((STR_5-__stringbase)| (0+32768)))& (0+255)
+  2033  02E7  251E               	fcall	i1_UART_puts
+  2034  02E8  0008               	return
+  2035  02E9                     __end_of_UART_EVENT:	
+  2036                           
+  2037                           	psect	text5
+  2038  051E                     __ptext5:	
+  2039 ;; *************** function i1_UART_puts *****************
+  2040 ;; Defined at:
+  2041 ;;		line 8 in file "RegConfiguration.c"
+  2042 ;; Parameters:    Size  Location     Type
+  2043 ;;  c               1    wreg     PTR const unsigned char 
+  2044 ;;		 -> STR_10(7), STR_9(4), STR_8(7), STR_7(4), 
+  2045 ;;		 -> STR_6(7), STR_5(7), STR_4(7), STR_3(7), 
+  2046 ;;		 -> STR_2(7), STR_1(7), 
+  2047 ;; Auto vars:     Size  Location     Type
+  2048 ;;  c               1    1[COMMON] PTR const unsigned char 
+  2049 ;;		 -> STR_10(7), STR_9(4), STR_8(7), STR_7(4), 
+  2050 ;;		 -> STR_6(7), STR_5(7), STR_4(7), STR_3(7), 
+  2051 ;;		 -> STR_2(7), STR_1(7), 
+  2052 ;; Return value:  Size  Location     Type
+  2053 ;;                  1    wreg      void 
+  2054 ;; Registers used:
+  2055 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath
+  2056 ;; Tracked objects:
+  2057 ;;		On entry : 0/0
+  2058 ;;		On exit  : 0/0
+  2059 ;;		Unchanged: 0/0
+  2060 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2061 ;;      Params:         0       0       0       0
+  2062 ;;      Locals:         1       0       0       0
+  2063 ;;      Temps:          1       0       0       0
+  2064 ;;      Totals:         2       0       0       0
+  2065 ;;Total ram usage:        2 bytes
+  2066 ;; Hardware stack levels used:    2
+  2067 ;; This function calls:
+  2068 ;;		Nothing
+  2069 ;; This function is called by:
+  2070 ;;		_UART_EVENT
+  2071 ;;		_ISR
+  2072 ;; This function uses a non-reentrant model
+  2073 ;;
+  2074                           
+  2075                           
+  2076                           ;psect for function i1_UART_puts
+  2077  051E                     i1_UART_puts:	
+  2078                           
+  2079                           ;incstack = 0
+  2080                           ; Regs used in i1_UART_puts: [wreg-fsr0h+status,2+status,0+pclath]
+  2081                           ;i1UART_puts@c stored from wreg
+  2082  051E  00F1               	movwf	i1UART_puts@c
+  2083  051F                     i1l1261:	
+  2084                           ;RegConfiguration.c: 9: while(*c){
+  2085                           
+  2086  051F  0871               	movf	i1UART_puts@c,w
+  2087  0520  0084               	movwf	4
+  2088  0521  2418               	fcall	stringdir
+  2089  0522  3A00               	xorlw	0
+  2090  0523  1903               	btfsc	3,2
+  2091  0524  0008               	return
+  2092  0525                     i1l190:	
+  2093                           ;RegConfiguration.c: 10: { while(!TXIF){} TXREG=*c++; while(!TXIF){} };
+  2094                           
+  2095  0525  1283               	bcf	3,5	;RP0=0, select bank0
+  2096  0526  1303               	bcf	3,6	;RP1=0, select bank0
+  2097  0527  1E0C               	btfss	12,4	;volatile
+  2098  0528  2D25               	goto	i1l190
+  2099  0529  0871               	movf	i1UART_puts@c,w
+  2100  052A  0084               	movwf	4
+  2101  052B  2418               	fcall	stringdir
+  2102  052C  0099               	movwf	25	;volatile
+  2103  052D  3001               	movlw	1
+  2104  052E  00F0               	movwf	??i1_UART_puts
+  2105  052F  0870               	movf	??i1_UART_puts,w
+  2106  0530  07F1               	addwf	i1UART_puts@c,f
+  2107  0531                     i1l193:	
+  2108  0531  1A0C               	btfsc	12,4	;volatile
+  2109  0532  2D1F               	goto	i1l1261
+  2110  0533  2D31               	goto	i1l193
+  2111  0534                     __end_ofi1_UART_puts:	
+  2112                           
+  2113                           	psect	text6
+  2114  0450                     __ptext6:	
+  2115 ;; *************** function _clear_buffer *****************
+  2116 ;; Defined at:
+  2117 ;;		line 4 in file "CEC_DATA_STRUCT.c"
+  2118 ;; Parameters:    Size  Location     Type
+  2119 ;;  buffer          1    wreg     PTR struct BUFFER
+  2120 ;;		 -> CEC_OUTPUT_BUFFER(45), 
+  2121 ;; Auto vars:     Size  Location     Type
+  2122 ;;  buffer          1    4[COMMON] PTR struct BUFFER
+  2123 ;;		 -> CEC_OUTPUT_BUFFER(45), 
+  2124 ;;  i               2    2[COMMON] int 
+  2125 ;; Return value:  Size  Location     Type
+  2126 ;;                  1    wreg      void 
+  2127 ;; Registers used:
+  2128 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+  2129 ;; Tracked objects:
+  2130 ;;		On entry : 0/0
+  2131 ;;		On exit  : 0/0
+  2132 ;;		Unchanged: 0/0
+  2133 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2134 ;;      Params:         0       0       0       0
+  2135 ;;      Locals:         3       0       0       0
+  2136 ;;      Temps:          1       0       0       0
+  2137 ;;      Totals:         4       0       0       0
+  2138 ;;Total ram usage:        4 bytes
+  2139 ;; Hardware stack levels used:    1
+  2140 ;; Hardware stack levels required when called:    1
+  2141 ;; This function calls:
+  2142 ;;		_clear_bits
+  2143 ;; This function is called by:
+  2144 ;;		_UART_EVENT
+  2145 ;;		_ISR
+  2146 ;; This function uses a non-reentrant model
+  2147 ;;
+  2148                           
+  2149                           
+  2150                           ;psect for function _clear_buffer
+  2151  0450                     _clear_buffer:	
+  2152                           
+  2153                           ;incstack = 0
+  2154                           ; Regs used in _clear_buffer: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+  2155                           ;clear_buffer@buffer stored from wreg
+  2156  0450  00F4               	movwf	clear_buffer@buffer
+  2157                           
+  2158                           ;CEC_DATA_STRUCT.c: 5: for(int i=0;i<11;i++){
+  2159  0451  01F2               	clrf	clear_buffer@i
+  2160  0452  01F3               	clrf	clear_buffer@i+1
+  2161  0453  0873               	movf	clear_buffer@i+1,w
+  2162  0454  3A80               	xorlw	128
+  2163  0455  00FF               	movwf	127
+  2164  0456  3080               	movlw	128
+  2165  0457  027F               	subwf	127,w
+  2166  0458  1D03               	skipz
+  2167  0459  2C5C               	goto	u84_25
+  2168  045A  300B               	movlw	11
+  2169  045B  0272               	subwf	clear_buffer@i,w
+  2170  045C                     u84_25:	
+  2171  045C  1803               	btfsc	3,0
+  2172  045D  2C7C               	goto	i1l1249
+  2173  045E                     i1l1243:	
+  2174                           
+  2175                           ;CEC_DATA_STRUCT.c: 6: clear_bits(&(buffer->frames[i]));
+  2176  045E  0872               	movf	clear_buffer@i,w
+  2177  045F  00F1               	movwf	??_clear_buffer
+  2178  0460  3001               	movlw	1
+  2179  0461                     u85_25:	
+  2180  0461  1003               	clrc
+  2181  0462  0DF1               	rlf	??_clear_buffer,f
+  2182  0463  3EFF               	addlw	-1
+  2183  0464  1D03               	skipz
+  2184  0465  2C61               	goto	u85_25
+  2185  0466  1003               	clrc
+  2186  0467  0D71               	rlf	??_clear_buffer,w
+  2187  0468  3E01               	addlw	1
+  2188  0469  0774               	addwf	clear_buffer@buffer,w
+  2189  046A  2544               	fcall	_clear_bits
+  2190  046B  3001               	movlw	1
+  2191  046C  07F2               	addwf	clear_buffer@i,f
+  2192  046D  1803               	skipnc
+  2193  046E  0AF3               	incf	clear_buffer@i+1,f
+  2194  046F  3000               	movlw	0
+  2195  0470  07F3               	addwf	clear_buffer@i+1,f
+  2196  0471  0873               	movf	clear_buffer@i+1,w
+  2197  0472  3A80               	xorlw	128
+  2198  0473  00FF               	movwf	127
+  2199  0474  3080               	movlw	128
+  2200  0475  027F               	subwf	127,w
+  2201  0476  1D03               	skipz
+  2202  0477  2C7A               	goto	u86_25
+  2203  0478  300B               	movlw	11
+  2204  0479  0272               	subwf	clear_buffer@i,w
+  2205  047A                     u86_25:	
+  2206  047A  1C03               	skipc
+  2207  047B  2C5E               	goto	i1l1243
+  2208  047C                     i1l1249:	
+  2209                           
+  2210                           ;CEC_DATA_STRUCT.c: 7: }
+  2211                           ;CEC_DATA_STRUCT.c: 8: buffer->length = 0;
+  2212  047C  0874               	movf	clear_buffer@buffer,w
+  2213  047D  0084               	movwf	4
+  2214  047E  1783               	bsf	3,7	;select IRP bank2
+  2215  047F  0180               	clrf	0
+  2216  0480  0008               	return
+  2217  0481                     __end_of_clear_buffer:	
+  2218                           
+  2219                           	psect	text7
+  2220  0544                     __ptext7:	
+  2221 ;; *************** function _clear_bits *****************
+  2222 ;; Defined at:
+  2223 ;;		line 24 in file "CEC_DATA_STRUCT.c"
+  2224 ;; Parameters:    Size  Location     Type
+  2225 ;;  frame           1    wreg     PTR struct FRAME
+  2226 ;;		 -> CEC_OUTPUT_BUFFER.frames(44), CEC_OUTPUT_BUFFER(45), 
+  2227 ;; Auto vars:     Size  Location     Type
+  2228 ;;  frame           1    0[COMMON] PTR struct FRAME
+  2229 ;;		 -> CEC_OUTPUT_BUFFER.frames(44), CEC_OUTPUT_BUFFER(45), 
+  2230 ;; Return value:  Size  Location     Type
+  2231 ;;                  1    wreg      void 
+  2232 ;; Registers used:
+  2233 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  2234 ;; Tracked objects:
+  2235 ;;		On entry : 0/0
+  2236 ;;		On exit  : 0/0
+  2237 ;;		Unchanged: 0/0
+  2238 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2239 ;;      Params:         0       0       0       0
+  2240 ;;      Locals:         1       0       0       0
+  2241 ;;      Temps:          0       0       0       0
+  2242 ;;      Totals:         1       0       0       0
+  2243 ;;Total ram usage:        1 bytes
+  2244 ;; Hardware stack levels used:    1
+  2245 ;; This function calls:
+  2246 ;;		Nothing
+  2247 ;; This function is called by:
+  2248 ;;		_clear_buffer
+  2249 ;; This function uses a non-reentrant model
+  2250 ;;
+  2251                           
+  2252                           
+  2253                           ;psect for function _clear_bits
+  2254  0544                     _clear_bits:	
+  2255                           
+  2256                           ;incstack = 0
+  2257                           ; Regs used in _clear_bits: [wreg-fsr0h+status,2+status,0]
+  2258                           ;clear_bits@frame stored from wreg
+  2259  0544  00F0               	movwf	clear_bits@frame
+  2260                           
+  2261                           ;CEC_DATA_STRUCT.c: 25: frame->ACK = 0;
+  2262  0545  0870               	movf	clear_bits@frame,w
+  2263  0546  3E02               	addlw	2
+  2264  0547  0084               	movwf	4
+  2265  0548  1783               	bsf	3,7	;select IRP bank2
+  2266  0549  0180               	clrf	0
+  2267                           
+  2268                           ;CEC_DATA_STRUCT.c: 26: frame->data = 0;
+  2269  054A  0870               	movf	clear_bits@frame,w
+  2270  054B  0084               	movwf	4
+  2271  054C  0180               	clrf	0
+  2272                           
+  2273                           ;CEC_DATA_STRUCT.c: 27: frame->length = 0;
+  2274  054D  0870               	movf	clear_bits@frame,w
+  2275  054E  3E03               	addlw	3
+  2276  054F  0084               	movwf	4
+  2277  0550  0180               	clrf	0
+  2278  0551  0008               	return
+  2279  0552                     __end_of_clear_bits:	
+  2280                           
+  2281                           	psect	text8
+  2282  055A                     __ptext8:	
+  2283 ;; *************** function _CEC_SEND *****************
+  2284 ;; Defined at:
+  2285 ;;		line 4 in file "CEC_CONTROL.c"
+  2286 ;; Parameters:    Size  Location     Type
+  2287 ;;		None
+  2288 ;; Auto vars:     Size  Location     Type
+  2289 ;;		None
+  2290 ;; Return value:  Size  Location     Type
+  2291 ;;                  1    wreg      unsigned char 
+  2292 ;; Registers used:
+  2293 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  2294 ;; Tracked objects:
+  2295 ;;		On entry : 0/0
+  2296 ;;		On exit  : 0/0
+  2297 ;;		Unchanged: 0/0
+  2298 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2299 ;;      Params:         0       0       0       0
+  2300 ;;      Locals:         0       0       0       0
+  2301 ;;      Temps:          0       0       0       0
+  2302 ;;      Totals:         0       0       0       0
+  2303 ;;Total ram usage:        0 bytes
+  2304 ;; Hardware stack levels used:    1
+  2305 ;; Hardware stack levels required when called:    1
+  2306 ;; This function calls:
+  2307 ;;		_CEC_SC_SENDBUFFER
+  2308 ;; This function is called by:
+  2309 ;;		_UART_EVENT
+  2310 ;; This function uses a non-reentrant model
+  2311 ;;
+  2312                           
+  2313                           
+  2314                           ;psect for function _CEC_SEND
+  2315  055A                     _CEC_SEND:	
+  2316                           
+  2317                           ;CEC_CONTROL.c: 5: return CEC_SC_SENDBUFFER(&CEC_OUTPUT_BUFFER);
+  2318                           
+  2319                           ;incstack = 0
+  2320                           ; Regs used in _CEC_SEND: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  2321  055A  3020               	movlw	(low (_CEC_OUTPUT_BUFFER| (0+256)))& (0+255)
+  2322  055B  22E9               	fcall	_CEC_SC_SENDBUFFER
+  2323  055C  0008               	return
+  2324  055D                     __end_of_CEC_SEND:	
+  2325                           
+  2326                           	psect	text9
+  2327  02E9                     __ptext9:	
+  2328 ;; *************** function _CEC_SC_SENDBUFFER *****************
+  2329 ;; Defined at:
+  2330 ;;		line 20 in file "CEC_SENDER_CONTROLLER.c"
+  2331 ;; Parameters:    Size  Location     Type
+  2332 ;;  buffer          1    wreg     PTR struct BUFFER
+  2333 ;;		 -> CEC_OUTPUT_BUFFER(45), 
+  2334 ;; Auto vars:     Size  Location     Type
+  2335 ;;  buffer          1    4[BANK0 ] PTR struct BUFFER
+  2336 ;;		 -> CEC_OUTPUT_BUFFER(45), 
+  2337 ;;  bits            1    2[BANK0 ] unsigned char 
+  2338 ;;  data            2    0[BANK0 ] unsigned int 
+  2339 ;;  frame           1    3[BANK0 ] unsigned char 
+  2340 ;; Return value:  Size  Location     Type
+  2341 ;;                  1    wreg      unsigned char 
+  2342 ;; Registers used:
+  2343 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  2344 ;; Tracked objects:
+  2345 ;;		On entry : 0/0
+  2346 ;;		On exit  : 0/0
+  2347 ;;		Unchanged: 0/0
+  2348 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2349 ;;      Params:         0       0       0       0
+  2350 ;;      Locals:         0       5       0       0
+  2351 ;;      Temps:         12       0       0       0
+  2352 ;;      Totals:        12       5       0       0
+  2353 ;;Total ram usage:       17 bytes
+  2354 ;; Hardware stack levels used:    1
+  2355 ;; This function calls:
+  2356 ;;		Nothing
+  2357 ;; This function is called by:
+  2358 ;;		_CEC_SEND
+  2359 ;; This function uses a non-reentrant model
+  2360 ;;
+  2361                           
+  2362                           
+  2363                           ;psect for function _CEC_SC_SENDBUFFER
+  2364  02E9                     _CEC_SC_SENDBUFFER:	
+  2365                           
+  2366                           ;incstack = 0
+  2367                           ; Regs used in _CEC_SC_SENDBUFFER: [wreg-fsr0h+status,2+status,0]
+  2368                           ;CEC_SC_SENDBUFFER@buffer stored from wreg
+  2369  02E9  1283               	bcf	3,5	;RP0=0, select bank0
+  2370  02EA  1303               	bcf	3,6	;RP1=0, select bank0
+  2371  02EB  00A4               	movwf	CEC_SC_SENDBUFFER@buffer
+  2372                           
+  2373                           ;CEC_SENDER_CONTROLLER.c: 21: if(!(buffer->frames[buffer->length-1].EOM)){
+  2374  02EC  0824               	movf	CEC_SC_SENDBUFFER@buffer,w
+  2375  02ED  0084               	movwf	4
+  2376  02EE  1783               	bsf	3,7	;select IRP bank2
+  2377  02EF  0800               	movf	0,w
+  2378  02F0  00F0               	movwf	??_CEC_SC_SENDBUFFER
+  2379  02F1  3001               	movlw	1
+  2380  02F2                     u71_25:	
+  2381  02F2  1003               	clrc
+  2382  02F3  0DF0               	rlf	??_CEC_SC_SENDBUFFER,f
+  2383  02F4  3EFF               	addlw	-1
+  2384  02F5  1D03               	skipz
+  2385  02F6  2AF2               	goto	u71_25
+  2386  02F7  1003               	clrc
+  2387  02F8  0D70               	rlf	??_CEC_SC_SENDBUFFER,w
+  2388  02F9  3EFD               	addlw	253
+  2389  02FA  0724               	addwf	CEC_SC_SENDBUFFER@buffer,w
+  2390  02FB  00F1               	movwf	??_CEC_SC_SENDBUFFER+1
+  2391  02FC  0A71               	incf	??_CEC_SC_SENDBUFFER+1,w
+  2392  02FD  0084               	movwf	4
+  2393  02FE  0800               	movf	0,w
+  2394  02FF  1D03               	btfss	3,2
+  2395  0300  2B03               	goto	i1l251
+  2396                           
+  2397                           ;CEC_SENDER_CONTROLLER.c: 23: return 0;
+  2398  0301  3000               	movlw	0
+  2399  0302  0008               	return
+  2400  0303                     i1l251:	
+  2401                           
+  2402                           ;CEC_SENDER_CONTROLLER.c: 24: }
+  2403                           ;CEC_SENDER_CONTROLLER.c: 25: TRISBbits.TRISB3 = 0;
+  2404  0303  1683               	bsf	3,5	;RP0=1, select bank1
+  2405  0304  1303               	bcf	3,6	;RP1=0, select bank1
+  2406  0305  1186               	bcf	6,3	;volatile
+  2407                           
+  2408                           ;CEC_SENDER_CONTROLLER.c: 26: PORTBbits.RB3 = 0;
+  2409  0306  1283               	bcf	3,5	;RP0=0, select bank0
+  2410  0307  1303               	bcf	3,6	;RP1=0, select bank0
+  2411  0308  1186               	bcf	6,3	;volatile
+  2412                           
+  2413                           ;CEC_SENDER_CONTROLLER.c: 27: _delay((unsigned long)((3700)*(20000000/4000000.0)));
+  2414  0309  3019               	movlw	25
+  2415  030A  00F1               	movwf	??_CEC_SC_SENDBUFFER+1
+  2416  030B  3005               	movlw	5
+  2417  030C  00F0               	movwf	??_CEC_SC_SENDBUFFER
+  2418  030D                     u137_27:	
+  2419  030D  0BF0               	decfsz	??_CEC_SC_SENDBUFFER,f
+  2420  030E  2B0D               	goto	u137_27
+  2421  030F  0BF1               	decfsz	??_CEC_SC_SENDBUFFER+1,f
+  2422  0310  2B0D               	goto	u137_27
+  2423                           
+  2424                           ;CEC_SENDER_CONTROLLER.c: 28: PORTBbits.RB3 = 1;
+  2425  0311  1283               	bcf	3,5	;RP0=0, select bank0
+  2426  0312  1303               	bcf	3,6	;RP1=0, select bank0
+  2427  0313  1586               	bsf	6,3	;volatile
+  2428                           
+  2429                           ;CEC_SENDER_CONTROLLER.c: 29: _delay((unsigned long)((800)*(20000000/4000000.0)));
+  2430  0314  3006               	movlw	6
+  2431  0315  00F1               	movwf	??_CEC_SC_SENDBUFFER+1
+  2432  0316  3030               	movlw	48
+  2433  0317  00F0               	movwf	??_CEC_SC_SENDBUFFER
+  2434  0318                     u138_27:	
+  2435  0318  0BF0               	decfsz	??_CEC_SC_SENDBUFFER,f
+  2436  0319  2B18               	goto	u138_27
+  2437  031A  0BF1               	decfsz	??_CEC_SC_SENDBUFFER+1,f
+  2438  031B  2B18               	goto	u138_27
+  2439  031C  0000               	nop
+  2440                           
+  2441                           ;CEC_SENDER_CONTROLLER.c: 31: for(unsigned char frame=0 ; frame<buffer->length ; frame++
+      +                          ){
+  2442  031D  1283               	bcf	3,5	;RP0=0, select bank0
+  2443  031E  1303               	bcf	3,6	;RP1=0, select bank0
+  2444  031F  01A3               	clrf	CEC_SC_SENDBUFFER@frame
+  2445  0320                     i1l1215:	
+  2446  0320  0824               	movf	CEC_SC_SENDBUFFER@buffer,w
+  2447  0321  0084               	movwf	4
+  2448  0322  1783               	bsf	3,7	;select IRP bank2
+  2449  0323  0800               	movf	0,w
+  2450  0324  0223               	subwf	CEC_SC_SENDBUFFER@frame,w
+  2451  0325  1803               	btfsc	3,0
+  2452  0326  2BC2               	goto	i1l259
+  2453                           
+  2454                           ;CEC_SENDER_CONTROLLER.c: 32: unsigned int data = (buffer->frames[frame].data<<2)+ (buff
+      +                          er->frames[frame].EOM<<1)+ (buffer->frames[frame].ACK);
+  2455  0327  0823               	movf	CEC_SC_SENDBUFFER@frame,w
+  2456  0328  00F0               	movwf	??_CEC_SC_SENDBUFFER
+  2457  0329  3001               	movlw	1
+  2458  032A                     u73_25:	
+  2459  032A  1003               	clrc
+  2460  032B  0DF0               	rlf	??_CEC_SC_SENDBUFFER,f
+  2461  032C  3EFF               	addlw	-1
+  2462  032D  1D03               	skipz
+  2463  032E  2B2A               	goto	u73_25
+  2464  032F  1003               	clrc
+  2465  0330  0D70               	rlf	??_CEC_SC_SENDBUFFER,w
+  2466  0331  3E01               	addlw	1
+  2467  0332  0724               	addwf	CEC_SC_SENDBUFFER@buffer,w
+  2468  0333  00F1               	movwf	??_CEC_SC_SENDBUFFER+1
+  2469  0334  0A71               	incf	??_CEC_SC_SENDBUFFER+1,w
+  2470  0335  0084               	movwf	4
+  2471  0336  1783               	bsf	3,7	;select IRP bank2
+  2472  0337  0800               	movf	0,w
+  2473  0338  00F2               	movwf	??_CEC_SC_SENDBUFFER+2
+  2474  0339  01F3               	clrf	??_CEC_SC_SENDBUFFER+3
+  2475  033A  1003               	clrc
+  2476  033B  0DF2               	rlf	??_CEC_SC_SENDBUFFER+2,f
+  2477  033C  0DF3               	rlf	??_CEC_SC_SENDBUFFER+3,f
+  2478  033D  0823               	movf	CEC_SC_SENDBUFFER@frame,w
+  2479  033E  00F4               	movwf	??_CEC_SC_SENDBUFFER+4
+  2480  033F  3001               	movlw	1
+  2481  0340                     u74_25:	
+  2482  0340  1003               	clrc
+  2483  0341  0DF4               	rlf	??_CEC_SC_SENDBUFFER+4,f
+  2484  0342  3EFF               	addlw	-1
+  2485  0343  1D03               	skipz
+  2486  0344  2B40               	goto	u74_25
+  2487  0345  1003               	clrc
+  2488  0346  0D74               	rlf	??_CEC_SC_SENDBUFFER+4,w
+  2489  0347  3E01               	addlw	1
+  2490  0348  0724               	addwf	CEC_SC_SENDBUFFER@buffer,w
+  2491  0349  00F5               	movwf	??_CEC_SC_SENDBUFFER+5
+  2492  034A  0875               	movf	??_CEC_SC_SENDBUFFER+5,w
+  2493  034B  0084               	movwf	4
+  2494  034C  0800               	movf	0,w
+  2495  034D  00F6               	movwf	??_CEC_SC_SENDBUFFER+6
+  2496  034E  01F7               	clrf	??_CEC_SC_SENDBUFFER+7
+  2497  034F  1003               	clrc
+  2498  0350  0DF6               	rlf	??_CEC_SC_SENDBUFFER+6,f
+  2499  0351  0DF7               	rlf	??_CEC_SC_SENDBUFFER+7,f
+  2500  0352  1003               	clrc
+  2501  0353  0DF6               	rlf	??_CEC_SC_SENDBUFFER+6,f
+  2502  0354  0DF7               	rlf	??_CEC_SC_SENDBUFFER+7,f
+  2503  0355  0872               	movf	??_CEC_SC_SENDBUFFER+2,w
+  2504  0356  0776               	addwf	??_CEC_SC_SENDBUFFER+6,w
+  2505  0357  00F8               	movwf	??_CEC_SC_SENDBUFFER+8
+  2506  0358  0873               	movf	??_CEC_SC_SENDBUFFER+3,w
+  2507  0359  1803               	skipnc
+  2508  035A  0A73               	incf	??_CEC_SC_SENDBUFFER+3,w
+  2509  035B  0777               	addwf	??_CEC_SC_SENDBUFFER+7,w
+  2510  035C  00F9               	movwf	??_CEC_SC_SENDBUFFER+9
+  2511  035D  0823               	movf	CEC_SC_SENDBUFFER@frame,w
+  2512  035E  00FA               	movwf	??_CEC_SC_SENDBUFFER+10
+  2513  035F  3001               	movlw	1
+  2514  0360                     u75_25:	
+  2515  0360  1003               	clrc
+  2516  0361  0DFA               	rlf	??_CEC_SC_SENDBUFFER+10,f
+  2517  0362  3EFF               	addlw	-1
+  2518  0363  1D03               	skipz
+  2519  0364  2B60               	goto	u75_25
+  2520  0365  1003               	clrc
+  2521  0366  0D7A               	rlf	??_CEC_SC_SENDBUFFER+10,w
+  2522  0367  3E01               	addlw	1
+  2523  0368  0724               	addwf	CEC_SC_SENDBUFFER@buffer,w
+  2524  0369  00FB               	movwf	??_CEC_SC_SENDBUFFER+11
+  2525  036A  087B               	movf	??_CEC_SC_SENDBUFFER+11,w
+  2526  036B  3E02               	addlw	2
+  2527  036C  0084               	movwf	4
+  2528  036D  0800               	movf	0,w
+  2529  036E  0778               	addwf	??_CEC_SC_SENDBUFFER+8,w
+  2530  036F  00A0               	movwf	CEC_SC_SENDBUFFER@data
+  2531  0370  3000               	movlw	0
+  2532  0371  1803               	skipnc
+  2533  0372  3001               	movlw	1
+  2534  0373  0779               	addwf	??_CEC_SC_SENDBUFFER+9,w
+  2535  0374  00A1               	movwf	CEC_SC_SENDBUFFER@data+1
+  2536                           
+  2537                           ;CEC_SENDER_CONTROLLER.c: 35: for(unsigned char bits=0 ; bits<10 ; bits++){
+  2538  0375  01A2               	clrf	CEC_SC_SENDBUFFER@bits
+  2539  0376  300A               	movlw	10
+  2540  0377  0222               	subwf	CEC_SC_SENDBUFFER@bits,w
+  2541  0378  1803               	btfsc	3,0
+  2542  0379  2BBD               	goto	i1l1213
+  2543  037A                     i1l1197:	
+  2544                           
+  2545                           ;CEC_SENDER_CONTROLLER.c: 37: if( (data<<bits)&0x200 ){
+  2546  037A  0A22               	incf	CEC_SC_SENDBUFFER@bits,w
+  2547  037B  00F0               	movwf	??_CEC_SC_SENDBUFFER
+  2548  037C  0821               	movf	CEC_SC_SENDBUFFER@data+1,w
+  2549  037D  00F2               	movwf	??_CEC_SC_SENDBUFFER+2
+  2550  037E  0820               	movf	CEC_SC_SENDBUFFER@data,w
+  2551  037F  00F1               	movwf	??_CEC_SC_SENDBUFFER+1
+  2552  0380  2B84               	goto	u77_24
+  2553  0381                     u77_25:	
+  2554  0381  1003               	clrc
+  2555  0382  0DF1               	rlf	??_CEC_SC_SENDBUFFER+1,f
+  2556  0383  0DF2               	rlf	??_CEC_SC_SENDBUFFER+2,f
+  2557  0384                     u77_24:	
+  2558  0384  0BF0               	decfsz	??_CEC_SC_SENDBUFFER,f
+  2559  0385  2B81               	goto	u77_25
+  2560  0386  1CF2               	btfss	??_CEC_SC_SENDBUFFER+2,1
+  2561  0387  2B9E               	goto	i1l257
+  2562                           
+  2563                           ;CEC_SENDER_CONTROLLER.c: 38: PORTBbits.RB3 = 0;
+  2564  0388  1186               	bcf	6,3	;volatile
+  2565                           
+  2566                           ;CEC_SENDER_CONTROLLER.c: 39: _delay((unsigned long)((600)*(20000000/4000000.0)));
+  2567  0389  3004               	movlw	4
+  2568  038A  00F1               	movwf	??_CEC_SC_SENDBUFFER+1
+  2569  038B  30E4               	movlw	228
+  2570  038C  00F0               	movwf	??_CEC_SC_SENDBUFFER
+  2571  038D                     u139_27:	
+  2572  038D  0BF0               	decfsz	??_CEC_SC_SENDBUFFER,f
+  2573  038E  2B8D               	goto	u139_27
+  2574  038F  0BF1               	decfsz	??_CEC_SC_SENDBUFFER+1,f
+  2575  0390  2B8D               	goto	u139_27
+  2576  0391  0000               	nop
+  2577                           
+  2578                           ;CEC_SENDER_CONTROLLER.c: 40: PORTBbits.RB3 = 1;
+  2579  0392  1283               	bcf	3,5	;RP0=0, select bank0
+  2580  0393  1303               	bcf	3,6	;RP1=0, select bank0
+  2581  0394  1586               	bsf	6,3	;volatile
+  2582                           
+  2583                           ;CEC_SENDER_CONTROLLER.c: 41: _delay((unsigned long)((1800)*(20000000/4000000.0)));
+  2584  0395  300C               	movlw	12
+  2585  0396  00F1               	movwf	??_CEC_SC_SENDBUFFER+1
+  2586  0397  30AF               	movlw	175
+  2587  0398  00F0               	movwf	??_CEC_SC_SENDBUFFER
+  2588  0399                     u140_27:	
+  2589  0399  0BF0               	decfsz	??_CEC_SC_SENDBUFFER,f
+  2590  039A  2B99               	goto	u140_27
+  2591  039B  0BF1               	decfsz	??_CEC_SC_SENDBUFFER+1,f
+  2592  039C  2B99               	goto	u140_27
+  2593                           
+  2594                           ;CEC_SENDER_CONTROLLER.c: 42: }else{
+  2595  039D  2BB3               	goto	i1l1209
+  2596  039E                     i1l257:	
+  2597                           
+  2598                           ;CEC_SENDER_CONTROLLER.c: 44: PORTBbits.RB3 = 0;
+  2599  039E  1186               	bcf	6,3	;volatile
+  2600                           
+  2601                           ;CEC_SENDER_CONTROLLER.c: 45: _delay((unsigned long)((1500)*(20000000/4000000.0)));
+  2602  039F  300A               	movlw	10
+  2603  03A0  00F1               	movwf	??_CEC_SC_SENDBUFFER+1
+  2604  03A1  30BC               	movlw	188
+  2605  03A2  00F0               	movwf	??_CEC_SC_SENDBUFFER
+  2606  03A3                     u141_27:	
+  2607  03A3  0BF0               	decfsz	??_CEC_SC_SENDBUFFER,f
+  2608  03A4  2BA3               	goto	u141_27
+  2609  03A5  0BF1               	decfsz	??_CEC_SC_SENDBUFFER+1,f
+  2610  03A6  2BA3               	goto	u141_27
+  2611  03A7  0000               	nop
+  2612                           
+  2613                           ;CEC_SENDER_CONTROLLER.c: 46: PORTBbits.RB3 = 1;
+  2614  03A8  1283               	bcf	3,5	;RP0=0, select bank0
+  2615  03A9  1303               	bcf	3,6	;RP1=0, select bank0
+  2616  03AA  1586               	bsf	6,3	;volatile
+  2617                           
+  2618                           ;CEC_SENDER_CONTROLLER.c: 47: _delay((unsigned long)((900)*(20000000/4000000.0)));
+  2619  03AB  3006               	movlw	6
+  2620  03AC  00F1               	movwf	??_CEC_SC_SENDBUFFER+1
+  2621  03AD  30D7               	movlw	215
+  2622  03AE  00F0               	movwf	??_CEC_SC_SENDBUFFER
+  2623  03AF                     u142_27:	
+  2624  03AF  0BF0               	decfsz	??_CEC_SC_SENDBUFFER,f
+  2625  03B0  2BAF               	goto	u142_27
+  2626  03B1  0BF1               	decfsz	??_CEC_SC_SENDBUFFER+1,f
+  2627  03B2  2BAF               	goto	u142_27
+  2628  03B3                     i1l1209:	
+  2629  03B3  3001               	movlw	1
+  2630  03B4  00F0               	movwf	??_CEC_SC_SENDBUFFER
+  2631  03B5  0870               	movf	??_CEC_SC_SENDBUFFER,w
+  2632  03B6  1283               	bcf	3,5	;RP0=0, select bank0
+  2633  03B7  1303               	bcf	3,6	;RP1=0, select bank0
+  2634  03B8  07A2               	addwf	CEC_SC_SENDBUFFER@bits,f
+  2635  03B9  300A               	movlw	10
+  2636  03BA  0222               	subwf	CEC_SC_SENDBUFFER@bits,w
+  2637  03BB  1C03               	skipc
+  2638  03BC  2B7A               	goto	i1l1197
+  2639  03BD                     i1l1213:	
+  2640  03BD  3001               	movlw	1
+  2641  03BE  00F0               	movwf	??_CEC_SC_SENDBUFFER
+  2642  03BF  0870               	movf	??_CEC_SC_SENDBUFFER,w
+  2643  03C0  07A3               	addwf	CEC_SC_SENDBUFFER@frame,f
+  2644  03C1  2B20               	goto	i1l1215
+  2645  03C2                     i1l259:	
+  2646                           
+  2647                           ;CEC_SENDER_CONTROLLER.c: 48: }
+  2648                           ;CEC_SENDER_CONTROLLER.c: 49: }
+  2649                           ;CEC_SENDER_CONTROLLER.c: 50: }
+  2650                           ;CEC_SENDER_CONTROLLER.c: 54: TRISBbits.TRISB3 = 1;
+  2651  03C2  1683               	bsf	3,5	;RP0=1, select bank1
+  2652  03C3  1303               	bcf	3,6	;RP1=0, select bank1
+  2653  03C4  1586               	bsf	6,3	;volatile
+  2654                           
+  2655                           ;CEC_SENDER_CONTROLLER.c: 55: return 1;
+  2656  03C5  3001               	movlw	1
+  2657  03C6  0008               	return
+  2658  03C7                     __end_of_CEC_SC_SENDBUFFER:	
+  2659                           
+  2660                           	psect	text10
+  2661  0481                     __ptext10:	
+  2662 ;; *************** function _CEC_PUSH_BUFFER *****************
+  2663 ;; Defined at:
+  2664 ;;		line 7 in file "CEC_CONTROL.c"
+  2665 ;; Parameters:    Size  Location     Type
+  2666 ;;  frame           2    7[COMMON] volatile unsigned int 
+  2667 ;; Auto vars:     Size  Location     Type
+  2668 ;;  Data            4    0[BANK0 ] volatile struct FRAME
+  2669 ;; Return value:  Size  Location     Type
+  2670 ;;                  1    wreg      unsigned char 
+  2671 ;; Registers used:
+  2672 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  2673 ;; Tracked objects:
+  2674 ;;		On entry : 0/0
+  2675 ;;		On exit  : 0/0
+  2676 ;;		Unchanged: 0/0
+  2677 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2678 ;;      Params:         2       0       0       0
+  2679 ;;      Locals:         0       4       0       0
+  2680 ;;      Temps:          3       0       0       0
+  2681 ;;      Totals:         5       4       0       0
+  2682 ;;Total ram usage:        9 bytes
+  2683 ;; Hardware stack levels used:    1
+  2684 ;; Hardware stack levels required when called:    1
+  2685 ;; This function calls:
+  2686 ;;		_add_frame
+  2687 ;; This function is called by:
+  2688 ;;		_UART_EVENT
+  2689 ;; This function uses a non-reentrant model
+  2690 ;;
+  2691                           
+  2692                           
+  2693                           ;psect for function _CEC_PUSH_BUFFER
+  2694  0481                     _CEC_PUSH_BUFFER:	
+  2695                           
+  2696                           ;CEC_CONTROL.c: 11: volatile CEC_FRAME Data;
+  2697                           ;CEC_CONTROL.c: 12: Data.data = 0xFF&(frame>>2);
+  2698                           
+  2699                           ;incstack = 0
+  2700                           ; Regs used in _CEC_PUSH_BUFFER: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  2701  0481  0878               	movf	CEC_PUSH_BUFFER@frame+1,w	;volatile
+  2702  0482  00FA               	movwf	??_CEC_PUSH_BUFFER+1
+  2703  0483  0877               	movf	CEC_PUSH_BUFFER@frame,w	;volatile
+  2704  0484  00F9               	movwf	??_CEC_PUSH_BUFFER
+  2705  0485  1003               	clrc
+  2706  0486  0CFA               	rrf	??_CEC_PUSH_BUFFER+1,f
+  2707  0487  0CF9               	rrf	??_CEC_PUSH_BUFFER,f
+  2708  0488  1003               	clrc
+  2709  0489  0CFA               	rrf	??_CEC_PUSH_BUFFER+1,f
+  2710  048A  0CF9               	rrf	??_CEC_PUSH_BUFFER,f
+  2711  048B  0879               	movf	??_CEC_PUSH_BUFFER,w
+  2712  048C  00FB               	movwf	??_CEC_PUSH_BUFFER+2
+  2713  048D  087B               	movf	??_CEC_PUSH_BUFFER+2,w
+  2714  048E  1283               	bcf	3,5	;RP0=0, select bank0
+  2715  048F  1303               	bcf	3,6	;RP1=0, select bank0
+  2716  0490  00A0               	movwf	CEC_PUSH_BUFFER@Data	;volatile
+  2717                           
+  2718                           ;CEC_CONTROL.c: 13: Data.EOM = 0x01&(frame>>1);
+  2719  0491  0878               	movf	CEC_PUSH_BUFFER@frame+1,w	;volatile
+  2720  0492  00FA               	movwf	??_CEC_PUSH_BUFFER+1
+  2721  0493  0877               	movf	CEC_PUSH_BUFFER@frame,w	;volatile
+  2722  0494  00F9               	movwf	??_CEC_PUSH_BUFFER
+  2723  0495  1003               	clrc
+  2724  0496  0CFA               	rrf	??_CEC_PUSH_BUFFER+1,f
+  2725  0497  0CF9               	rrf	??_CEC_PUSH_BUFFER,f
+  2726  0498  0879               	movf	??_CEC_PUSH_BUFFER,w
+  2727  0499  3901               	andlw	1
+  2728  049A  00FB               	movwf	??_CEC_PUSH_BUFFER+2
+  2729  049B  087B               	movf	??_CEC_PUSH_BUFFER+2,w
+  2730  049C  00A1               	movwf	CEC_PUSH_BUFFER@Data+1	;volatile
+  2731                           
+  2732                           ;CEC_CONTROL.c: 14: Data.ACK = 0x01&frame;
+  2733  049D  0877               	movf	CEC_PUSH_BUFFER@frame,w	;volatile
+  2734  049E  3901               	andlw	1
+  2735  049F  00F9               	movwf	??_CEC_PUSH_BUFFER
+  2736  04A0  0879               	movf	??_CEC_PUSH_BUFFER,w
+  2737  04A1  00A2               	movwf	CEC_PUSH_BUFFER@Data+2	;volatile
+  2738                           
+  2739                           ;CEC_CONTROL.c: 15: return add_frame(Data,&CEC_OUTPUT_BUFFER);
+  2740  04A2  0823               	movf	CEC_PUSH_BUFFER@Data+3,w	;volatile
+  2741  04A3  00F3               	movwf	add_frame@frame+3
+  2742  04A4  0822               	movf	CEC_PUSH_BUFFER@Data+2,w	;volatile
+  2743  04A5  00F2               	movwf	add_frame@frame+2
+  2744  04A6  0821               	movf	CEC_PUSH_BUFFER@Data+1,w	;volatile
+  2745  04A7  00F1               	movwf	add_frame@frame+1
+  2746  04A8  0820               	movf	CEC_PUSH_BUFFER@Data,w	;volatile
+  2747  04A9  00F0               	movwf	add_frame@frame
+  2748  04AA  3020               	movlw	(low (_CEC_OUTPUT_BUFFER| (0+256)))& (0+255)
+  2749  04AB  00F9               	movwf	??_CEC_PUSH_BUFFER
+  2750  04AC  0879               	movf	??_CEC_PUSH_BUFFER,w
+  2751  04AD  00F4               	movwf	add_frame@buffer
+  2752  04AE  24B0               	fcall	_add_frame
+  2753  04AF  0008               	return
+  2754  04B0                     __end_of_CEC_PUSH_BUFFER:	
+  2755                           
+  2756                           	psect	text11
+  2757  04B0                     __ptext11:	
+  2758 ;; *************** function _add_frame *****************
+  2759 ;; Defined at:
+  2760 ;;		line 15 in file "CEC_DATA_STRUCT.c"
+  2761 ;; Parameters:    Size  Location     Type
+  2762 ;;  frame           4    0[COMMON] struct FRAME
+  2763 ;;  buffer          1    4[COMMON] PTR struct BUFFER
+  2764 ;;		 -> CEC_OUTPUT_BUFFER(45), 
+  2765 ;; Auto vars:     Size  Location     Type
+  2766 ;;		None
+  2767 ;; Return value:  Size  Location     Type
+  2768 ;;                  1    wreg      unsigned char 
+  2769 ;; Registers used:
+  2770 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  2771 ;; Tracked objects:
+  2772 ;;		On entry : 0/0
+  2773 ;;		On exit  : 0/0
+  2774 ;;		Unchanged: 0/0
+  2775 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2776 ;;      Params:         5       0       0       0
+  2777 ;;      Locals:         0       0       0       0
+  2778 ;;      Temps:          2       0       0       0
+  2779 ;;      Totals:         7       0       0       0
+  2780 ;;Total ram usage:        7 bytes
+  2781 ;; Hardware stack levels used:    1
+  2782 ;; This function calls:
+  2783 ;;		Nothing
+  2784 ;; This function is called by:
+  2785 ;;		_CEC_PUSH_BUFFER
+  2786 ;; This function uses a non-reentrant model
+  2787 ;;
+  2788                           
+  2789                           
+  2790                           ;psect for function _add_frame
+  2791  04B0                     _add_frame:	
+  2792                           
+  2793                           ;CEC_DATA_STRUCT.c: 16: if(buffer->length<11){
+  2794                           
+  2795                           ;incstack = 0
+  2796                           ; Regs used in _add_frame: [wreg-fsr0h+status,2+status,0]
+  2797  04B0  0874               	movf	add_frame@buffer,w
+  2798  04B1  0084               	movwf	4
+  2799  04B2  300B               	movlw	11
+  2800  04B3  1783               	bsf	3,7	;select IRP bank2
+  2801  04B4  0200               	subwf	0,w
+  2802  04B5  1803               	skipnc
+  2803  04B6  2CDB               	goto	i1l1173
+  2804                           
+  2805                           ;CEC_DATA_STRUCT.c: 17: buffer->frames[buffer->length] = frame;
+  2806  04B7  0874               	movf	add_frame@buffer,w
+  2807  04B8  0084               	movwf	4
+  2808  04B9  0800               	movf	0,w
+  2809  04BA  00F5               	movwf	??_add_frame
+  2810  04BB  3001               	movlw	1
+  2811  04BC                     u70_25:	
+  2812  04BC  1003               	clrc
+  2813  04BD  0DF5               	rlf	??_add_frame,f
+  2814  04BE  3EFF               	addlw	-1
+  2815  04BF  1D03               	skipz
+  2816  04C0  2CBC               	goto	u70_25
+  2817  04C1  1003               	clrc
+  2818  04C2  0D75               	rlf	??_add_frame,w
+  2819  04C3  3E01               	addlw	1
+  2820  04C4  0774               	addwf	add_frame@buffer,w
+  2821  04C5  00F6               	movwf	??_add_frame+1
+  2822  04C6  0876               	movf	??_add_frame+1,w
+  2823  04C7  0084               	movwf	4
+  2824  04C8  0870               	movf	add_frame@frame,w
+  2825  04C9  0080               	movwf	0
+  2826  04CA  0A84               	incf	4,f
+  2827  04CB  0871               	movf	add_frame@frame+1,w
+  2828  04CC  0080               	movwf	0
+  2829  04CD  0A84               	incf	4,f
+  2830  04CE  0872               	movf	add_frame@frame+2,w
+  2831  04CF  0080               	movwf	0
+  2832  04D0  0A84               	incf	4,f
+  2833  04D1  0873               	movf	add_frame@frame+3,w
+  2834  04D2  0080               	movwf	0
+  2835                           
+  2836                           ;CEC_DATA_STRUCT.c: 18: buffer->length++;
+  2837  04D3  3001               	movlw	1
+  2838  04D4  00F5               	movwf	??_add_frame
+  2839  04D5  0874               	movf	add_frame@buffer,w
+  2840  04D6  0084               	movwf	4
+  2841  04D7  0875               	movf	??_add_frame,w
+  2842  04D8  0780               	addwf	0,f
+  2843                           
+  2844                           ;CEC_DATA_STRUCT.c: 19: return 1;
+  2845  04D9  3001               	movlw	1
+  2846                           
+  2847                           ;CEC_DATA_STRUCT.c: 20: }else{
+  2848  04DA  0008               	return
+  2849  04DB                     i1l1173:	
+  2850                           
+  2851                           ;CEC_DATA_STRUCT.c: 21: return 0;
+  2852  04DB  3000               	movlw	0
+  2853  04DC  0008               	return
+  2854  04DD                     __end_of_add_frame:	
+  2855  007E                     btemp	set	126	;btemp
+  2856  007E                     wtemp0	set	126
+
+
+Data Sizes:
+    Strings     50
+    Constant    0
+    Data        16
+    BSS         79
+    Persistent  1
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14     13      14
+    BANK0            80     36      47
+    BANK1            80     25      64
+    BANK2            48      0      45
+
+Pointer List with Targets:
+
+    CEC_SC_SENDBUFFER@buffer	PTR struct BUFFER size(1) Largest target is 45
+		 -> CEC_OUTPUT_BUFFER(BANK2[45]), 
+
+    clear_bits@frame	PTR struct FRAME size(1) Largest target is 45
+		 -> CEC_OUTPUT_BUFFER.frames(BANK2[44]), CEC_OUTPUT_BUFFER(BANK2[45]), 
+
+    add_frame@buffer	PTR struct BUFFER size(1) Largest target is 45
+		 -> CEC_OUTPUT_BUFFER(BANK2[45]), 
+
+    clear_buffer@buffer	PTR struct BUFFER size(1) Largest target is 45
+		 -> CEC_OUTPUT_BUFFER(BANK2[45]), 
+
+    UART_puts@c	PTR const unsigned char  size(1) Largest target is 7
+		 -> STR_10(CODE[7]), STR_9(CODE[4]), STR_8(CODE[7]), STR_7(CODE[4]), 
+		 -> STR_6(CODE[7]), STR_5(CODE[7]), STR_4(CODE[7]), STR_3(CODE[7]), 
+		 -> STR_2(CODE[7]), STR_1(CODE[7]), 
+
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _ISR in COMMON
+
+    _UART_EVENT->_CEC_PUSH_BUFFER
+    _clear_buffer->_clear_bits
+    _CEC_SEND->_CEC_SC_SENDBUFFER
+    _CEC_PUSH_BUFFER->_add_frame
+
+Critical Paths under _main in BANK0
+
+    _main->_CEC_CAPTURE_EVENT
+    _CEC_CAPTURE_EVENT->_UART_puts
+
+Critical Paths under _ISR in BANK0
+
+    _ISR->_UART_EVENT
+    _CEC_SEND->_CEC_SC_SENDBUFFER
+
+Critical Paths under _main in BANK1
+
+    _main->_CEC_CAPTURE_EVENT
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     757
+                  _CEC_CAPTURE_EVENT
+ ---------------------------------------------------------------------------------
+ (1) _CEC_CAPTURE_EVENT                                   29    29      0     757
+                                             32 BANK0      4     4      0
+                                              0 BANK1     25    25      0
+                          _UART_puts
+ ---------------------------------------------------------------------------------
+ (2) _UART_puts                                            2     2      0     345
+                                             30 BANK0      2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _ISR                                                  6     6      0    2425
+                                             12 COMMON     1     1      0
+                                             25 BANK0      5     5      0
+                         _UART_EVENT
+                       _clear_buffer
+                        i1_UART_puts
+ ---------------------------------------------------------------------------------
+ (4) _UART_EVENT                                          20    20      0    1955
+                                              5 BANK0     20    20      0
+                    _CEC_PUSH_BUFFER
+                           _CEC_SEND
+                       _clear_buffer
+                        i1_UART_puts
+ ---------------------------------------------------------------------------------
+ (5) i1_UART_puts                                          2     2      0      45
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ (4) _clear_buffer                                         4     4      0     358
+                                              1 COMMON     4     4      0
+                         _clear_bits
+ ---------------------------------------------------------------------------------
+ (5) _clear_bits                                           1     1      0      96
+                                              0 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ (5) _CEC_SEND                                             0     0      0     343
+                  _CEC_SC_SENDBUFFER
+ ---------------------------------------------------------------------------------
+ (6) _CEC_SC_SENDBUFFER                                   17    17      0     343
+                                              0 COMMON    12    12      0
+                                              0 BANK0      5     5      0
+ ---------------------------------------------------------------------------------
+ (5) _CEC_PUSH_BUFFER                                      9     7      2     503
+                                              7 COMMON     5     3      2
+                                              0 BANK0      4     4      0
+                          _add_frame
+ ---------------------------------------------------------------------------------
+ (6) _add_frame                                            7     2      5     238
+                                              0 COMMON     7     2      5
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 6
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _CEC_CAPTURE_EVENT
+     _UART_puts
+
+ _ISR (ROOT)
+   _UART_EVENT
+     _CEC_PUSH_BUFFER
+       _add_frame
+     _CEC_SEND
+       _CEC_SC_SENDBUFFER
+     _clear_buffer
+       _clear_bits
+     i1_UART_puts
+   _clear_buffer
+     _clear_bits
+   i1_UART_puts
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+SFR3                 0      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+BANK2               30      0      2D       9       93.8%
+BITBANK2            30      0       0       8        0.0%
+SFR2                 0      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+BANK1               50     19      40       7       80.0%
+BITBANK1            50      0       0       6        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR1              0      0       0       2        0.0%
+BANK0               50     24      2F       3       58.8%
+BITBANK0            50      0       0       5        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+COMMON               E      D       E       1      100.0%
+BITCOMMON            E      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+DATA                 0      0      AA      10        0.0%
+ABS                  0      0      AA       4        0.0%
+NULL                 0      0       0       0        0.0%
+STACK                0      0       0       2        0.0%
+EEDATA              80      0       0       0        0.0%
+
+
+Microchip Technology PIC Macro Assembler V1.41 build -162212810 
+Symbol Table                                                                                   Sat Jul  8 10:34:10 2017
+
+                             pc 0002                     __CFG_CP$OFF 0000                              fsr 0004  
+                           l121 016A                             l130 018A                             l124 016C  
+                           l133 0197                             l118 015B                             l127 0188  
+                           l136 0199                             l139 019D                             l190 0511  
+                           l193 051B                    __CFG_CPD$OFF 0000                             _ISR 03C7  
+                           u900 0055                             u995 0109                             fsr0 0004  
+                           indf 0000                    __CFG_FOSC$HS 0000                    __CFG_LVP$OFF 0000  
+                          ?_ISR 0070                            l1301 0087                            l1227 050B  
+                          l1327 00AA                            l1361 014D                            l1353 0116  
+                          l1273 0067                            l1347 00DD                            l1365 0159  
+                          l1359 014A                            l1375 01A0                            l1377 01A2  
+                          STR_1 043A                            STR_2 0441                            STR_3 0441  
+                          STR_4 042C                            STR_5 0425                            STR_6 0433  
+                          STR_7 044C                            STR_8 0433                            STR_9 0448  
+                          u1025 0143                            u1075 017B                            _PIE1 008C  
+                          _RCIF 0065                            _PIR1 000C                            _TMR1 000E  
+                          _SPEN 00C7                            _TXIF 0064                            _main 04DD  
+                          _step 007D                            btemp 007E                __end_of_CEC_SEND 055D  
+                          start 0010        __size_of_CEC_PUSH_BUFFER 002F                   __CFG_MCLRE$ON 0000  
+         CEC_CAPTURE_EVENT@F682 00B9                           ??_ISR 0039                  UART_EVENT@F665 0044  
+                         ISR@rx 007C                      _HexToASCII 00CF                           ?_main 0070  
+                         _CCPR1 0015                           STR_10 041E                   __CFG_WDTE$OFF 0000  
+                   ?_UART_EVENT 0070                           _T1CON 0010                           i1l251 0303  
+                         i1l172 03F7                           i1l190 0525                           i1l175 040B  
+                         i1l257 039E                           i1l193 0531                           i1l178 03FB  
+                         i1l259 03C2                           _RCREG 001A                           _RCSTA 0018  
+                UART_EVENT@data 002D                           _SPBRG 0099                           _PORTA 0005  
+                         _PORTB 0006                           u70_25 04BC                           u71_25 02F2  
+                         _TRISA 0085                           u73_25 032A                           u74_25 0340  
+                         u75_25 0360            __end_of_clear_buffer 0481                           u84_25 045C  
+                         u77_24 0384                           u77_25 0381                           u85_25 0461  
+                         u86_25 047A                           _TXREG 0019                           _TXSTA 0098  
+            __size_of_UART_puts 0016                  __CFG_BOREN$OFF 0000                           pclath 000A  
+                         status 0003                           wtemp0 007E                 __initialization 0011  
+                  ?i1_UART_puts 0070                    __end_of_main 0508                          ??_main 0044  
+                        _CCP1IF 0062                          _CEC_IF 00DF                          i1l1213 03BD  
+                        i1l1215 0320                 UART_EVENT@i_230 0037                          i1l1209 03B3  
+                        i1l1401 01DB                 UART_EVENT@i_223 0033                          i1l1243 045E  
+               UART_EVENT@i_225 0034                          i1l1173 04DB                          i1l1261 051F  
+               UART_EVENT@i_227 0035                          i1l1407 01F7                 UART_EVENT@i_229 0036  
+                        i1l1249 047C                          i1l1425 0219                          i1l1417 020B  
+                        i1l1197 037A                          i1l1517 02E6                          i1l1509 02D8  
+                        i1l1447 025F                          i1l1475 02B0                          i1l1397 01CB  
+                        i1l1575 03F1                          i1l1567 03DD                          i1l1499 02CE  
+                        u140_27 0399                          u141_27 03A3                          u142_27 03AF  
+                        _INTCON 000B                          u137_27 030D                          u138_27 0318  
+                        u139_27 038D                          _TMR1IE 0460                          _TMR1IF 0060  
+                        _TMR1ON 0080             __size_of_UART_EVENT 0143                  __CFG_PWRTE$OFF 0000  
+             __end_of_UART_puts 051E               ??_CEC_PUSH_BUFFER 0079                          saved_w 007E  
+                     ?_CEC_SEND 0070         __end_of__initialization 0042              __size_of_add_frame 002D  
+                __pcstackCOMMON 0070                    __pidataBANK1 0534           __size_of_clear_buffer 0031  
+                    ??_CEC_SEND 007C               _CEC_CAPTURE_EVENT 0044                      __pbssBANK0 0044  
+                    __pbssBANK1 00B9                      __pbssBANK2 0120              ?_CEC_CAPTURE_EVENT 0070  
+               clear_bits@frame 0070                    _clear_buffer 0450                  add_frame@frame 0070  
+                    _clear_bits 0544                      __pmaintext 04DD             ??_CEC_CAPTURE_EVENT 0040  
+                    __pintentry 0004                         _CCP1CON 0017            __size_ofi1_UART_puts 0016  
+                  ??_UART_EVENT 0025               __end_of_add_frame 04DD       __end_of_CEC_CAPTURE_EVENT 01A6  
+                    __stringtab 0418   CEC_CAPTURE_EVENT@frame_buffer 00B6                     UART_EVENT@i 0038  
+            __end_of_UART_EVENT 02E9                         __ptext1 0044                         __ptext2 0508  
+                       __ptext3 03C7                         __ptext4 01A6                         __ptext5 051E  
+                       __ptext6 0450                         __ptext7 0544                         __ptext8 055A  
+                       __ptext9 02E9                    __size_of_ISR 0051                         clrloop0 0553  
+          end_of_initialization 0042                 _CEC_PUSH_BUFFER 0481         CEC_SC_SENDBUFFER@buffer 0024  
+                   ?_clear_bits 0070                       _PORTAbits 0005                       _PORTBbits 0006  
+                     _UART_puts 0508                       _TRISBbits 0086                    i1UART_puts@c 0071  
+    __size_of_CEC_CAPTURE_EVENT 0162               __size_of_CEC_SEND 0003                      ?_UART_puts 0070  
+           start_initialization 0011                     __end_of_ISR 0418             __size_of_clear_bits 000E  
+       __end_of_CEC_PUSH_BUFFER 04B0                   clear_buffer@i 0072                     __pdataBANK1 00CF  
+             _CEC_SC_SENDBUFFER 02E9  CEC_CAPTURE_EVENT@timing_buffer 00A0              ?_CEC_SC_SENDBUFFER 0070  
+                   __pbssCOMMON 007D                       ___latbits 0000                   __pcstackBANK0 0020  
+                 __pcstackBANK1 00A0                       _add_frame 04B0             ??_CEC_SC_SENDBUFFER 0070  
+                     __pnvBANK1 00DF                 add_frame@buffer 0074                   ??i1_UART_puts 0070  
+     __end_of_CEC_SC_SENDBUFFER 03C7                       __pstrings 0418                     ??_UART_puts 003E  
+                      _CEC_SEND 055A                      ?_add_frame 0070                ?_CEC_PUSH_BUFFER 0077  
+             interrupt_function 0004                       clear_ram0 0552                        _PIE1bits 008C  
+        CEC_SC_SENDBUFFER@frame 0023                    ??_clear_bits 0070                        _PIR1bits 000C  
+                    UART_puts@c 003F                     __stringbase 041D             __end_ofi1_UART_puts 0534  
+            clear_buffer@buffer 0074              __end_of_clear_bits 0552      __size_of_CEC_SC_SENDBUFFER 00DE  
+  CEC_CAPTURE_EVENT@bit_counter 00B8              __end_of__stringtab 041E            CEC_PUSH_BUFFER@frame 0077  
+                   ??_add_frame 0075                        __ptext10 0481                        __ptext11 04B0  
+             _CEC_OUTPUT_BUFFER 0120                   __size_of_main 002B                   ?_clear_buffer 0070  
+         CEC_SC_SENDBUFFER@data 0020           CEC_SC_SENDBUFFER@bits 0022                     i1_UART_puts 051E  
+           CEC_PUSH_BUFFER@Data 0020                        intlevel1 0000                  ??_clear_buffer 0071  
+                     stringcode 0418                      _UART_EVENT 01A6                     _uart_buffer 004A  
+                      stringdir 0418                        stringtab 0418  

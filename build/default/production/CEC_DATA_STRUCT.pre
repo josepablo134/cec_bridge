@@ -1,0 +1,71 @@
+
+# 1 "CEC_DATA_STRUCT.c"
+
+# 12 "/Applications/microchip/xc8/v1.41/include/stdbool.h"
+typedef unsigned char bool;
+
+# 8 "CEC_DATA_STRUCT.h"
+struct FRAME{
+unsigned char data;
+bool EOM;
+bool ACK;
+unsigned char length;
+};
+
+# 17
+struct BUFFER{
+unsigned char length;
+struct FRAME frames[11];
+};
+
+# 24
+struct DIRECTIONS{
+unsigned char PhysicalAddress;
+unsigned char LogicalAddress;
+};
+typedef struct FRAME CEC_FRAME;
+typedef struct BUFFER CEC_BUFFER;
+typedef struct DIRECTIONS CEC_DIRECTIONS;
+
+# 37
+void clear_buffer(CEC_BUFFER*);
+
+# 43
+void clear_directions(CEC_DIRECTIONS*);
+
+# 51
+bool add_frame(CEC_FRAME,CEC_BUFFER*);
+
+# 59
+bool add_bit_to_frame(CEC_FRAME*,bool);
+
+# 65
+void clear_bits(CEC_FRAME*);
+
+# 73
+void set_direction(CEC_DIRECTIONS*,unsigned char,unsigned char);
+
+# 4 "CEC_DATA_STRUCT.c"
+void clear_buffer(CEC_BUFFER *buffer){
+for(int i=0;i<11;i++){
+clear_bits(&(buffer->frames[i]));
+}
+buffer->length = 0;
+}
+
+# 15
+bool add_frame(CEC_FRAME frame, CEC_BUFFER *buffer){
+if(buffer->length<11){
+buffer->frames[buffer->length] = frame;
+buffer->length++;
+return 1;
+}else{
+return 0;
+}
+}
+void clear_bits(CEC_FRAME* frame){
+frame->ACK = 0;
+frame->data = 0;
+frame->length = 0;
+}
+

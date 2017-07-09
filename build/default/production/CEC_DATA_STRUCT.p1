@@ -1,0 +1,128 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"8 CEC_DATA_STRUCT.h
+[s S1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S1 FRAME data EOM ACK length ]
+"17
+[s S2 `uc 1 `S1 -> 11 `i ]
+[n S2 BUFFER length frames ]
+"65
+[v _clear_bits `(v ~T0 @X0 0 ef1`*S1 ]
+[; ;stdbool.h: 12: typedef unsigned char bool;
+[; ;CEC_DATA_STRUCT.h: 8: struct FRAME{
+[; ;CEC_DATA_STRUCT.h: 9: unsigned char data;
+[; ;CEC_DATA_STRUCT.h: 10: bool EOM;
+[; ;CEC_DATA_STRUCT.h: 11: bool ACK;
+[; ;CEC_DATA_STRUCT.h: 12: unsigned char length;
+[; ;CEC_DATA_STRUCT.h: 13: };
+[; ;CEC_DATA_STRUCT.h: 17: struct BUFFER{
+[; ;CEC_DATA_STRUCT.h: 18: unsigned char length;
+[; ;CEC_DATA_STRUCT.h: 19: struct FRAME frames[11];
+[; ;CEC_DATA_STRUCT.h: 20: };
+[; ;CEC_DATA_STRUCT.h: 24: struct DIRECTIONS{
+[; ;CEC_DATA_STRUCT.h: 25: unsigned char PhysicalAddress;
+[; ;CEC_DATA_STRUCT.h: 26: unsigned char LogicalAddress;
+[; ;CEC_DATA_STRUCT.h: 27: };
+[; ;CEC_DATA_STRUCT.h: 28: typedef struct FRAME CEC_FRAME;
+[; ;CEC_DATA_STRUCT.h: 29: typedef struct BUFFER CEC_BUFFER;
+[; ;CEC_DATA_STRUCT.h: 30: typedef struct DIRECTIONS CEC_DIRECTIONS;
+[; ;CEC_DATA_STRUCT.h: 37: void clear_buffer(CEC_BUFFER*);
+[; ;CEC_DATA_STRUCT.h: 43: void clear_directions(CEC_DIRECTIONS*);
+[; ;CEC_DATA_STRUCT.h: 51: bool add_frame(CEC_FRAME,CEC_BUFFER*);
+[; ;CEC_DATA_STRUCT.h: 59: bool add_bit_to_frame(CEC_FRAME*,bool);
+[; ;CEC_DATA_STRUCT.h: 65: void clear_bits(CEC_FRAME*);
+[; ;CEC_DATA_STRUCT.h: 73: void set_direction(CEC_DIRECTIONS*,unsigned char,unsigned char);
+"4 CEC_DATA_STRUCT.c
+[v _clear_buffer `(v ~T0 @X0 1 ef1`*S2 ]
+{
+[; ;CEC_DATA_STRUCT.c: 4: void clear_buffer(CEC_BUFFER *buffer){
+[e :U _clear_buffer ]
+[v _buffer `*S2 ~T0 @X0 1 r1 ]
+[f ]
+[; ;CEC_DATA_STRUCT.c: 5: for(int i=0;i<11;i++){
+"5
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 11 `i 5  ]
+[e $U 6  ]
+[e :U 5 ]
+{
+[; ;CEC_DATA_STRUCT.c: 6: clear_bits(&(buffer->frames[i]));
+"6
+[e ( _clear_bits (1 &U *U + &U . *U _buffer 1 * -> -> _i `ui `ux -> -> # *U &U . *U _buffer 1 `ui `ux ]
+"7
+}
+"5
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 11 `i 5  ]
+[e :U 6 ]
+"7
+}
+[; ;CEC_DATA_STRUCT.c: 7: }
+[; ;CEC_DATA_STRUCT.c: 8: buffer->length = 0;
+"8
+[e = . *U _buffer 0 -> -> 0 `i `uc ]
+[; ;CEC_DATA_STRUCT.c: 9: }
+"9
+[e :UE 4 ]
+}
+"15
+[v _add_frame `(uc ~T0 @X0 1 ef2`S1`*S2 ]
+{
+[; ;CEC_DATA_STRUCT.c: 15: bool add_frame(CEC_FRAME frame, CEC_BUFFER *buffer){
+[e :U _add_frame ]
+[v _frame `S1 ~T0 @X0 1 r1 ]
+[v _buffer `*S2 ~T0 @X0 1 r2 ]
+[f ]
+[; ;CEC_DATA_STRUCT.c: 16: if(buffer->length<11){
+"16
+[e $ ! < -> . *U _buffer 0 `i -> 11 `i 9  ]
+{
+[; ;CEC_DATA_STRUCT.c: 17: buffer->frames[buffer->length] = frame;
+"17
+[e = *U + &U . *U _buffer 1 * -> . *U _buffer 0 `ux -> -> # *U &U . *U _buffer 1 `ui `ux _frame ]
+[; ;CEC_DATA_STRUCT.c: 18: buffer->length++;
+"18
+[e ++ . *U _buffer 0 -> -> 1 `i `uc ]
+[; ;CEC_DATA_STRUCT.c: 19: return 1;
+"19
+[e ) -> -> 1 `i `uc ]
+[e $UE 8  ]
+"20
+}
+[; ;CEC_DATA_STRUCT.c: 20: }else{
+[e $U 10  ]
+[e :U 9 ]
+{
+[; ;CEC_DATA_STRUCT.c: 21: return 0;
+"21
+[e ) -> -> 0 `i `uc ]
+[e $UE 8  ]
+"22
+}
+[e :U 10 ]
+[; ;CEC_DATA_STRUCT.c: 22: }
+[; ;CEC_DATA_STRUCT.c: 23: }
+"23
+[e :UE 8 ]
+}
+"24
+[v _clear_bits `(v ~T0 @X0 1 ef1`*S1 ]
+{
+[; ;CEC_DATA_STRUCT.c: 24: void clear_bits(CEC_FRAME* frame){
+[e :U _clear_bits ]
+[v _frame `*S1 ~T0 @X0 1 r1 ]
+[f ]
+[; ;CEC_DATA_STRUCT.c: 25: frame->ACK = 0;
+"25
+[e = . *U _frame 2 -> -> 0 `i `uc ]
+[; ;CEC_DATA_STRUCT.c: 26: frame->data = 0;
+"26
+[e = . *U _frame 0 -> -> 0 `i `uc ]
+[; ;CEC_DATA_STRUCT.c: 27: frame->length = 0;
+"27
+[e = . *U _frame 3 -> -> 0 `i `uc ]
+[; ;CEC_DATA_STRUCT.c: 28: }
+"28
+[e :UE 11 ]
+}
